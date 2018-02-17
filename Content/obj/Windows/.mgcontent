@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/button.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/Main_Menu_Background_1000x1000.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/Menu_Background_1000x1000 (1).png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/Menu_Background_1000x1000.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/particles.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/leiko.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/trombo.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/eritro.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/hpBar.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/cell.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/bacterium.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/background.jpg</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Sounds/music1.mp3</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Sounds/kill.wav</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/wall.png</File>
+  </SourceFiles>
+</SourceFileCollection>
