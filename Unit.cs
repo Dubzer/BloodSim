@@ -13,6 +13,7 @@ namespace BloodSim
 {
     public class Unit
     {
+		// Основа основ для взаимодействующих друг с другом объектов
         public Texture2D texture;
         public Vector2 position;
         public Rectangle boundingBox;
