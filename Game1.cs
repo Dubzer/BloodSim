@@ -29,6 +29,7 @@ namespace BloodSim
         static public List<Wall> wallList = new List<Wall>();
 
         //static public Spawner spawner = new Spawner();
+        int spawnTimer = 0;
 
         HUD hud = new HUD();
 
@@ -51,7 +52,9 @@ namespace BloodSim
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
+
+            graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             for (int i = 0; i < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 200 + 1; i++)
             {
@@ -121,6 +124,7 @@ namespace BloodSim
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            #region Обновление игровых объектов
             for (int i = 0; i < eritroList.Count; i++)
             {
                 eritroList[i].Update(gameTime, new Rectangle(100, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + eritroList[i].boundingBox.Height /*- eritroList[i].boundingBox.Height*/, 2, 2), wallList);
@@ -151,6 +155,17 @@ namespace BloodSim
 
             hud.Update(gameTime, oxygenPoints);
             background.Update(gameTime);
+            #endregion
+
+            #region Создание бактерий
+            spawnTimer++;
+            if(spawnTimer == 500)
+            {
+                SpawnBacterium(1);
+                spawnTimer = 0;
+            }
+            #endregion
+
 
             base.Update(gameTime);
         }
@@ -192,7 +207,7 @@ namespace BloodSim
             base.Draw(gameTime);
         }
 
-        // УПРАВЛЕНИЕ ИГРОВЫМ ПРОЦЕССОМ //
+        #region УПРАВЛЕНИЕ ИГРОВЫМ ПРОЦЕССОМ
         protected void SpawnBacterium(int amount)
         {
             for (int i = 0; i < amount; i++)
@@ -202,6 +217,7 @@ namespace BloodSim
                     new Vector2(random.Next(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4,
                     GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - bacteriumExample.boundingBox.Width),
                     random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
+                bacteriumExample.texture = Content.Load<Texture2D>("Textures/bacterium");
 
                 bacteriumList.Add(bacteriumExample);
             }
@@ -262,5 +278,6 @@ namespace BloodSim
                 i--;
             }
         }
+        #endregion
     }
 }
