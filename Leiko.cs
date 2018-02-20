@@ -16,8 +16,11 @@ namespace BloodSim
         public Rectangle currentTarget;
         public Random random;
 
-        public SoundEffect soundEffect;
+        public SoundEffect death_soundEffect;
         bool dead = false;
+
+        public SoundEffect bite_soundEffect;
+        int biteTimer = 0;
 
         public event Action OnDeath;
 
@@ -36,7 +39,8 @@ namespace BloodSim
         public override void LoadContent(ContentManager content)
         {
             texture = content.Load<Texture2D>("Textures/leiko");
-            soundEffect = content.Load<SoundEffect>("Sounds/kill");
+            death_soundEffect = content.Load<SoundEffect>("Sounds/kill");
+            bite_soundEffect = content.Load<SoundEffect>("Sounds/bite");
         }
 
         public void Update(GameTime gameTime, List<Bacterium> Blist, List<Wall> list)
@@ -55,7 +59,14 @@ namespace BloodSim
 
                     if (boundingBox.Intersects(bac.boundingBox))
                     {
-                        bac.hp -= 1;
+                        biteTimer++;
+                        if (biteTimer == 30)
+                        {
+                            bac.hp -= 10;
+                            SoundEffect.MasterVolume = 0.5f;
+                            bite_soundEffect.Play();
+                            biteTimer = 0;
+                        }
                     }
 
                     if (bac.hp <= 0)
@@ -87,7 +98,7 @@ namespace BloodSim
         public void Die()
         {
             SoundEffect.MasterVolume = 0.5f;
-            soundEffect.Play();
+            death_soundEffect.Play();
 
             dead = true;
         }

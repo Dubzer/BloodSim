@@ -218,6 +218,8 @@ namespace BloodSim
                     GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - bacteriumExample.boundingBox.Width),
                     random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
                 bacteriumExample.texture = Content.Load<Texture2D>("Textures/bacterium");
+                bacteriumExample.death_soundEffect = Content.Load<SoundEffect>("Sounds/kill");
+                bacteriumExample.bite_soundEffect = Content.Load<SoundEffect>("Sounds/bite");
 
                 bacteriumList.Add(bacteriumExample);
             }

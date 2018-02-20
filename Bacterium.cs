@@ -16,14 +16,18 @@ namespace BloodSim
         public event Action OnDeath;
         bool dead = false;
 
-        public SoundEffect soundEffect;
+        public SoundEffect death_soundEffect;
+
+        public SoundEffect bite_soundEffect;
+        int biteTimer = 0;
 
         public Rectangle currentTarget;
 
         public override void LoadContent(ContentManager content)
         {
             texture = content.Load<Texture2D>("Textures/bacterium");
-            soundEffect = content.Load<SoundEffect>("Sounds/kill");
+            death_soundEffect = content.Load<SoundEffect>("Sounds/kill");
+            bite_soundEffect = content.Load<SoundEffect>("Sounds/bite");
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -50,7 +54,7 @@ namespace BloodSim
                         Vector2 dis = new Vector2(cell.position.X, cell.position.Y) - position;
                         float length = (float)Math.Sqrt(dis.X + dis.Y);
 
-                        if ((length < 5000) && (cell.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (cell.position.Y > 0) && cell.hp > 0)
+                        if ((length < 2000) && (cell.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (cell.position.Y > 0) && cell.hp > 0)
                         {
                             currentTarget = cell.boundingBox;
                         }
@@ -61,7 +65,14 @@ namespace BloodSim
 
                         if (boundingBox.Intersects(cell.boundingBox))
                         {
-                            cell.hp -= 1;
+                            biteTimer++;
+                            if(biteTimer == 50)
+                            {
+                                cell.hp -= 10;
+                                SoundEffect.MasterVolume = 0.5f;
+                                bite_soundEffect.Play();
+                                biteTimer = 0;
+                            }
                         }
                     }
                    
@@ -99,9 +110,9 @@ namespace BloodSim
         public void Die()
         {
             SoundEffect.MasterVolume = 0.5f;
-            soundEffect.Play();
+            death_soundEffect.Play();
 
-           dead = true;
+            dead = true;
         }
     }
 }
