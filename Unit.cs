@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Audio;
 
 namespace BloodSim
 {
     public class Unit
     {
-		// Основа основ для взаимодействующих друг с другом объектов
         public Texture2D texture;
         public Vector2 position;
         public Rectangle boundingBox;
@@ -29,7 +21,10 @@ namespace BloodSim
         {
             if(hp > 0)
             {
-                spriteBatch.Draw(texture, boundingBox, Color.White);
+                if(texture != null)
+                {
+                    spriteBatch.Draw(texture, boundingBox, Color.White);
+                }
             }
         }
     }

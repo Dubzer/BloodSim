@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 
 namespace BloodSim
 {
-    public class Leiko : Cell
+    public class Trombo : Cell
     {
         public Rectangle currentTarget;
         public Random random;
@@ -15,55 +19,46 @@ namespace BloodSim
         public SoundEffect death_soundEffect;
         bool dead = false;
 
-        public SoundEffect bite_soundEffect;
-        int biteTimer = 0;
-
         public event Action OnDeath;
 
-        public Leiko(Random random)
+        public Trombo(Random random)
         {
+            currentTarget = new Rectangle(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4), GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + 200, 2, 2);
             texture = null;
+            position = new Vector2(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4), -100);
             this.random = random;
-            position = new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2);
-            currentTarget = new Rectangle(100, 100, 2, 2);
 
             OnDeath += Die;
         }
 
-        public override void LoadContent(ContentManager content)
+        public void Die()
         {
-            texture = content.Load<Texture2D>("Textures/leiko");
-            death_soundEffect = content.Load<SoundEffect>("Sounds/kill");
-            bite_soundEffect = content.Load<SoundEffect>("Sounds/bite");
+            SoundEffect.MasterVolume = 0.5f;
+            death_soundEffect.Play();
+
+            dead = true;
         }
 
-        public void Update(GameTime gameTime, List<Bacterium> Blist, List<Wall> list)
+        public void Update(GameTime gameTime, List<Wall> wallList)
         {
             if (hp > 0)
             {
-                foreach (Bacterium bac in Blist)
+                foreach (Wall w in wallList)
                 {
-                    Vector2 dis = new Vector2(bac.position.X, bac.position.Y) - position;
+                    Vector2 dis = new Vector2(w.position.X, w.position.Y) - position;
                     float length = (float)Math.Sqrt(dis.X + dis.Y);
 
-                    if ((length < 5000) && (bac.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (bac.position.Y > 0))
+                    if ((length < 5000) && (w.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (w.position.Y > 0))
                     {
-                        currentTarget = bac.boundingBox;
+                        currentTarget = w.boundingBox;
                     }
 
-                    if (boundingBox.Intersects(bac.boundingBox))
+                    if (boundingBox.Intersects(w.boundingBox))
                     {
-                        biteTimer++;
-                        if (biteTimer == 30)
-                        {
-                            bac.hp -= 10;
-                            SoundEffect.MasterVolume = 0.5f;
-                            bite_soundEffect.Play();
-                            biteTimer = 0;
-                        }
+                        w.hp++;
                     }
 
-                    if (bac.hp <= 0)
+                    if (w.hp >= 100)
                     {
                         currentTarget = new Rectangle(100, 100, 2, 2);
                     }
@@ -86,15 +81,6 @@ namespace BloodSim
                     OnDeath();
                 }
             }
-
-        }
-
-        public void Die()
-        {
-            SoundEffect.MasterVolume = 0.5f;
-            death_soundEffect.Play();
-
-            dead = true;
         }
     }
 }

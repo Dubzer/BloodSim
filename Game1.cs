@@ -35,9 +35,9 @@ namespace BloodSim
 
         static public int oxygenPoints;
 
-        public Cell er1 = new Eritro(random);
+        public Eritro er1 = new Eritro(random);
 
-        public Cell le1 = new Leiko(random);
+        public Leiko le1 = new Leiko(random);
         public Background background = new Background();
 
         Song music;
@@ -60,6 +60,16 @@ namespace BloodSim
             {
                 wallList.Add(new Wall());
             }
+
+            eritroList.Add(er1);
+            cellList.Add(er1);
+
+            leikoList.Add(le1);
+            cellList.Add(le1);
+
+            wallList[3].hp = 0;
+            wallList[5].hp = 0;
+
 
             //ba2.position = new Vector2(1920,600);
         }
@@ -132,7 +142,7 @@ namespace BloodSim
 
             for (int i = 0; i < bacteriumList.Count; i++)
             {
-                bacteriumList[i].Update(gameTime, cellList);
+                bacteriumList[i].Update(gameTime, cellList, wallList);
             }
 
             for (int i = 0; i < leikoList.Count; i++)
@@ -212,17 +222,42 @@ namespace BloodSim
         {
             for (int i = 0; i < amount; i++)
             {
-                Bacterium bacteriumExample = new Bacterium();
-                bacteriumExample.position =
-                    new Vector2(random.Next(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4,
-                    GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - bacteriumExample.boundingBox.Width),
-                    random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
-                bacteriumExample.texture = Content.Load<Texture2D>("Textures/bacterium");
-                bacteriumExample.death_soundEffect = Content.Load<SoundEffect>("Sounds/kill");
-                bacteriumExample.bite_soundEffect = Content.Load<SoundEffect>("Sounds/bite");
-
+                Bacterium bacteriumExample = new Bacterium(random)
+                {
+                    texture = Content.Load<Texture2D>("Textures/bacterium"),
+                    death_soundEffect = Content.Load<SoundEffect>("Sounds/kill"),
+                    bite_soundEffect = Content.Load<SoundEffect>("Sounds/bite")
+                };
                 bacteriumList.Add(bacteriumExample);
             }
+        }
+
+        protected void SpawnEritro(int amount)
+        {
+            Eritro eritroExample = new Eritro(random)
+            {
+                texture = Content.Load<Texture2D>("Textures/eritro"),
+                death_soundEffect = Content.Load<SoundEffect>("Sounds/kill")
+            };
+            eritroList.Add(eritroExample);
+            cellList.Add(eritroExample);
+        }
+
+        protected void SpawnLeiko(int amount)
+        {
+            Leiko leikoExample = new Leiko(random)
+            {
+                texture = Content.Load<Texture2D>("Textures/leiko"),
+                death_soundEffect = Content.Load<SoundEffect>("Sounds/kill"),
+                bite_soundEffect = Content.Load<SoundEffect>("Sounds/bite")
+            };
+            leikoList.Add(leikoExample);
+            cellList.Add(leikoExample);
+        }
+
+        protected void SpawnTrombo(int amount)
+        {
+
         }
 
         protected void ClearAll() // Очистка списков с уже уничтоженными клетками для уменьшения нагрузки

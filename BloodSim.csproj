@@ -49,7 +49,7 @@
     <Compile Include="Leiko.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spawner.cs" />
+    <Compile Include="Trombo.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Eritro.cs" />
     <Compile Include="Wall.cs" />

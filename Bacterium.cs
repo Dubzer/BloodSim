@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 
@@ -13,6 +9,9 @@ namespace BloodSim
 {
     public class Bacterium : Unit
     {
+        public event Action OnPenetration;
+        public bool hasPenetrated = false;
+
         public event Action OnDeath;
         bool dead = false;
 
@@ -20,6 +19,7 @@ namespace BloodSim
 
         public SoundEffect bite_soundEffect;
         int biteTimer = 0;
+
 
         public Rectangle currentTarget;
 
@@ -35,54 +35,84 @@ namespace BloodSim
             base.Draw(spriteBatch);
         }
 
-        public Bacterium()
+        public Bacterium(Random random)
         {
-            position = new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
-            //Game1.bacteriumList.Add(this);
+            position = new Vector2(random.Next(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4,
+                    GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - boundingBox.Width),
+                    random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
 
             OnDeath += Die;
+            OnPenetration += Penetrate;
         }
 
-        public void Update(GameTime gameTime, List<Cell> list)
+        public void Update(GameTime gameTime, List<Cell> list, List<Wall> wallList)
         {
             if (hp > 0)
             {
-                foreach (Cell cell in list)
+                if (hasPenetrated)
                 {
-                    if (cell.hp > 0)
+                    foreach (Cell cell in list)
                     {
-                        Vector2 dis = new Vector2(cell.position.X, cell.position.Y) - position;
-                        float length = (float)Math.Sqrt(dis.X + dis.Y);
-
-                        if ((length < 2000) && (cell.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (cell.position.Y > 0) && cell.hp > 0)
+                        if (cell.hp > 0)
                         {
-                            currentTarget = cell.boundingBox;
+                            Vector2 dis = new Vector2(cell.position.X, cell.position.Y) - position;
+                            float length = (float)Math.Sqrt(dis.X + dis.Y);
+
+                            if ((length < 2000) && (cell.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (cell.position.Y > 0) && cell.hp > 0)
+                            {
+                                currentTarget = cell.boundingBox;
+                            }
+                            else
+                            {
+                                currentTarget = new Rectangle(200, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2, 100, 100);
+                            }
+
+                            if (boundingBox.Intersects(cell.boundingBox))
+                            {
+                                biteTimer++;
+                                if (biteTimer == 50)
+                                {
+                                    cell.hp -= 10;
+                                    SoundEffect.MasterVolume = 0.5f;
+                                    bite_soundEffect.Play();
+                                    biteTimer = 0;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < wallList.Count; i++)
+                    {
+                        if (wallList[i].hp <= 0)
+                        {
+                            currentTarget = new Rectangle(wallList[i].boundingBox.X + 50, wallList[i].boundingBox.Y, wallList[i].boundingBox.Width, wallList[i].boundingBox.Height);
+                            break;
                         }
                         else
                         {
-                            currentTarget = new Rectangle(200, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2, 100, 100);
+                            continue;
                         }
-
-                        if (boundingBox.Intersects(cell.boundingBox))
-                        {
-                            biteTimer++;
-                            if(biteTimer == 50)
-                            {
-                                cell.hp -= 10;
-                                SoundEffect.MasterVolume = 0.5f;
-                                bite_soundEffect.Play();
-                                biteTimer = 0;
-                            }
-                        }
-                    }
-                   
+                    } 
                 }
 
-                if (new Vector2(boundingBox.X, boundingBox.Y) != new Vector2(currentTarget.X, currentTarget.Y))
+                /*if (new Vector2(boundingBox.X, boundingBox.Y) != new Vector2(currentTarget.X, currentTarget.Y))
                 {
                     Vector2 Direction = new Vector2(currentTarget.X, currentTarget.Y) - position;
                     Direction.Normalize();
                     position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 400;
+                }*/
+                if (!(boundingBox.Intersects(currentTarget) && position.Y + boundingBox.Height < currentTarget.Y + currentTarget.Height))
+                {
+                    Vector2 Direction = new Vector2(currentTarget.X, currentTarget.Y) - position;
+                    Direction.Normalize();
+                    position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 400;
+                }
+                else
+                {
+                    OnPenetration();
                 }
 
                 if (position.Y >= GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - boundingBox.Height)
@@ -113,6 +143,11 @@ namespace BloodSim
             death_soundEffect.Play();
 
             dead = true;
+        }
+
+        public void Penetrate()
+        {
+            hasPenetrated = true;
         }
     }
 }
