@@ -181,3 +181,9 @@
 /processorParam:TextureFormat=Color
 /build:Textures/wall.png
 
+#begin Sounds/bite.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/bite.wav
+

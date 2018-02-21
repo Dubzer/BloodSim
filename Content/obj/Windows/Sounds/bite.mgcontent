@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Sounds/kill.wav</SourceFile>
-  <SourceTime>2018-01-24T15:19:46.3605309+03:00</SourceTime>
-  <DestFile>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/bin/Windows/Sounds/kill.xnb</DestFile>
-  <DestTime>2018-02-21T13:59:23.1386709+03:00</DestTime>
+  <SourceFile>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Sounds/bite.wav</SourceFile>
+  <SourceTime>2018-02-20T14:03:22.1238806+03:00</SourceTime>
+  <DestFile>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/bin/Windows/Sounds/bite.xnb</DestFile>
+  <DestTime>2018-02-21T13:59:23.325944+03:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T18:05:36+03:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
