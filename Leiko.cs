@@ -44,9 +44,10 @@ namespace BloodSim
                 foreach (Bacterium bac in Blist)
                 {
                     Vector2 dis = new Vector2(bac.position.X, bac.position.Y) - position;
-                    float length = (float)Math.Sqrt(dis.X + dis.Y);
+                    //float length = (float)Math.Sqrt(dis.X + dis.Y);
+                    float length = (float)Math.Sqrt(Math.Sqrt(dis.X + dis.Y) * Math.Sqrt(dis.X + dis.Y));
 
-                    if ((length < 5000) && (bac.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (bac.position.Y > 0))
+                    if ((length < 5000) && (bac.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (bac.position.Y > 0) && bac.position.X < list[1].position.X)
                     {
                         currentTarget = bac.boundingBox;
                     }

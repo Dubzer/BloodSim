@@ -26,6 +26,7 @@ namespace BloodSim
         static public List<Bacterium> bacteriumList = new List<Bacterium>();
         static public List<Eritro> eritroList = new List<Eritro>();
         static public List<Leiko> leikoList = new List<Leiko>();
+        static public List<Trombo> tromboList = new List<Trombo>();
         static public List<Wall> wallList = new List<Wall>();
 
         //static public Spawner spawner = new Spawner();
@@ -36,8 +37,9 @@ namespace BloodSim
         static public int oxygenPoints;
 
         public Eritro er1 = new Eritro(random);
-
         public Leiko le1 = new Leiko(random);
+        public Trombo tr1 = new Trombo(random);
+
         public Background background = new Background();
 
         Song music;
@@ -63,9 +65,13 @@ namespace BloodSim
 
             eritroList.Add(er1);
             cellList.Add(er1);
+            tromboList.Add(tr1);
+
+            //tr1.hp = 0;
 
             leikoList.Add(le1);
             cellList.Add(le1);
+            cellList.Add(tr1);
 
             wallList[3].hp = 0;
             wallList[5].hp = 0;
@@ -74,26 +80,13 @@ namespace BloodSim
             //ba2.position = new Vector2(1920,600);
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             for (int i = 0; i < cellList.Count; i++)
@@ -108,6 +101,10 @@ namespace BloodSim
             {
                 wallList[i].LoadContent(Content);
             }
+            for (int i = 0; i < tromboList.Count; i++)
+            {
+                tromboList[i].LoadContent(Content);
+            }
 
             background.LoadContent(Content);
             music = Content.Load<Song>("Sounds/music1");
@@ -115,20 +112,11 @@ namespace BloodSim
             hud.LoadContent(Content);
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -150,6 +138,11 @@ namespace BloodSim
                 leikoList[i].Update(gameTime, bacteriumList, wallList);
             }
 
+            for (int i = 0; i < tromboList.Count; i++)
+            {
+                tromboList[i].Update(gameTime, wallList);
+            }
+
             for (int i = 0; i < wallList.Count; i++)
             {
                 wallList[i].Update(gameTime);
@@ -167,6 +160,10 @@ namespace BloodSim
             background.Update(gameTime);
             #endregion
 
+            #region Очистка от уничтоженных объектов
+            ClearAll();
+            #endregion
+
             #region Создание бактерий
             spawnTimer++;
             if(spawnTimer == 500)
@@ -180,10 +177,6 @@ namespace BloodSim
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color(14, 9, 32));
@@ -208,6 +201,10 @@ namespace BloodSim
                 for (int i = 0; i < wallList.Count; i++)
                 {
                     wallList[i].Draw(spriteBatch);
+                }
+                for (int i = 0; i < tromboList.Count; i++)
+                {
+                    tromboList[i].Draw(spriteBatch);
                 }
 
                 hud.Draw(spriteBatch);

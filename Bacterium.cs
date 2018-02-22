@@ -37,9 +37,7 @@ namespace BloodSim
 
         public Bacterium(Random random)
         {
-            position = new Vector2(random.Next(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4,
-                    GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - boundingBox.Width),
-                    random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
+            position = new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width + boundingBox.Width, random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
 
             OnDeath += Die;
             OnPenetration += Penetrate;
@@ -47,7 +45,7 @@ namespace BloodSim
 
         public void Update(GameTime gameTime, List<Cell> list, List<Wall> wallList)
         {
-            if (hp > 0)
+            if (hp > 0) 
             {
                 if (hasPenetrated)
                 {
@@ -93,6 +91,7 @@ namespace BloodSim
                         }
                         else
                         {
+                            currentTarget = new Rectangle(new Random().Next(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width), 0, 100, 100);
                             continue;
                         }
                     } 

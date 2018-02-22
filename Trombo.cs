@@ -25,10 +25,16 @@ namespace BloodSim
         {
             currentTarget = new Rectangle(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4), GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + 200, 2, 2);
             texture = null;
-            position = new Vector2(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4), -100);
+            position = new Vector2(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4), 500);
             this.random = random;
 
             OnDeath += Die;
+        }
+
+        public override void LoadContent(ContentManager content)
+        {
+            texture = content.Load<Texture2D>("Textures/trombo");
+            death_soundEffect = content.Load<SoundEffect>("Sounds/kill");
         }
 
         public void Die()
@@ -43,12 +49,36 @@ namespace BloodSim
         {
             if (hp > 0)
             {
-                foreach (Wall w in wallList)
+                for (int i = 0; i < wallList.Count; i++)
+                {
+                    if (boundingBox.Intersects(wallList[i].boundingBox))
+                    {
+                        wallList[i].hp++;
+                        hp -= 2;
+                    }
+
+                    Vector2 dis = new Vector2(wallList[i].position.X, wallList[i].position.Y) - position;
+                    float length = (float)Math.Sqrt(dis.X + dis.Y);
+
+                    if ((length < 5000) && (wallList[i].hp < 100))
+                    {
+                        currentTarget = wallList[i].boundingBox;
+                        break;
+                    }
+                    else
+                    {
+                        currentTarget = new Rectangle(1000, 300, 2, 2);
+                        continue;
+                    }
+
+                }
+
+                /*foreach (Wall w in wallList)
                 {
                     Vector2 dis = new Vector2(w.position.X, w.position.Y) - position;
                     float length = (float)Math.Sqrt(dis.X + dis.Y);
 
-                    if ((length < 5000) && (w.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (w.position.Y > 0))
+                    if (length < 5000)
                     {
                         currentTarget = w.boundingBox;
                     }
@@ -60,9 +90,9 @@ namespace BloodSim
 
                     if (w.hp >= 100)
                     {
-                        currentTarget = new Rectangle(100, 100, 2, 2);
+                        currentTarget = new Rectangle(1000, 300, 2, 2);
                     }
-                }
+                }*/
 
                 if ((currentTarget.X != boundingBox.X) && (currentTarget.Y != boundingBox.Y))
                 {
