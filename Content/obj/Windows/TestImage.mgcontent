@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/TestImage.jpg</SourceFile>
-  <SourceTime>2018-02-23T13:41:40.2929602+03:00</SourceTime>
-  <DestFile>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/bin/Windows/TestImage.xnb</DestFile>
-  <DestTime>2018-02-23T14:44:29.472852+03:00</DestTime>
+  <SourceFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/TestImage.jpg</SourceFile>
+  <SourceTime>2018-02-23T19:12:44.5199968+03:00</SourceTime>
+  <DestFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bin/Windows/TestImage.xnb</DestFile>
+  <DestTime>2018-02-23T20:12:34.7010507+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T18:05:36+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

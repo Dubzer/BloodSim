@@ -98,3 +98,6 @@ C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.csprojResolveAss
 C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.exe
 C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.pdb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\regular.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\bold.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\bold42.xnb

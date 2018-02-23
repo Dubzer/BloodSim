@@ -19,7 +19,7 @@ namespace BloodSim
         public event Action OnClick0;
         public event Action OnClick1;
 
-        private SpriteFont robotoBold;
+        private SpriteFont fontRegular, fontBold;
 
         private Texture2D topTexture;
         private Rectangle topRectangle;
@@ -39,6 +39,14 @@ namespace BloodSim
                                                                   "\n" + "внешнему виду и " +
                                                                   "\n" + "функциям клеток " +
                                                                   "\n" + "крови человека");
+        Card card2 = new Card(new Vector2(0, 500), "item1", 250, "Лейкоцит",
+                                                  "Лейкоцит - белые кровяные" +
+                                                  "\n" + "клетки; неоднородная " +
+                                                  "\n" + "группа различных по  " +
+                                                  "\n" + "внешнему виду и " +
+                                                  "\n" + "функциям клеток " +
+                                                  "\n" + "крови человека");
+
         Texture2D backgound = null;
         private Rectangle backgroundRectangle;
 
@@ -50,6 +58,7 @@ namespace BloodSim
         {
             card0.Update(gameTime);
             card1.Update(gameTime);
+            card2.Update(gameTime);
             backgroundRectangle = new Rectangle(0, 0, 360, Game1.gameHeight);
             topRectangle = new Rectangle(0, 0, 360, 90);
 
@@ -74,9 +83,10 @@ namespace BloodSim
             spriteBatch.Draw(backgound, backgroundRectangle, Color.White);
             card0.Draw(spriteBatch);
             card1.Draw(spriteBatch);
+            card2.Draw(spriteBatch);
             spriteBatch.Draw(topTexture, topRectangle, Color.White);
-            spriteBatch.DrawString(robotoBold, "Магазин", new Vector2(10, 4), Color.Black);
-            spriteBatch.DrawString(robotoBold, "У вас: " + money + "$", new Vector2(12, 48), Color.Black);
+            spriteBatch.DrawString(fontBold, "Магазин", new Vector2(10, 4), Color.Black);
+            spriteBatch.DrawString(fontRegular, "У вас: " + money + "$", new Vector2(12, 48), Color.Black);
         }
         public void LoadContent(ContentManager Content)
         {
@@ -84,7 +94,11 @@ namespace BloodSim
             topTexture = Content.Load<Texture2D>("top");
             card0.LoadContent(Content);
             card1.LoadContent(Content);
-            robotoBold = Content.Load<SpriteFont>("robotoBold");
+            card2.LoadContent(Content);
+            #region Fonts
+            fontRegular = Content.Load<SpriteFont>("regular");
+            fontBold = Content.Load<SpriteFont>("bold");
+            #endregion
             _currentMouseState = Mouse.GetState();
             _previousMouseState = _currentMouseState;
         }

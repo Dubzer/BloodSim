@@ -19,7 +19,7 @@ namespace BloodSim.UI.PauseMenu
         private Vector2 textPosition, namePosition;
         private Rectangle rectangle;        // Ректенгл карточки
         private Color color, defaultColor, selectedColor;        // Цвет карточки
-        private SpriteFont robotoRegular;       // Шрифты
+        private SpriteFont regular;       // Шрифты
         private SoundEffect clickSound;     // Звук клика
         private bool isExpanded;
         public Action clicked;
@@ -45,11 +45,11 @@ namespace BloodSim.UI.PauseMenu
         { 
             
             spriteBatch.Draw(texture, rectangle, color);        //  Отрисовка карточки
-            spriteBatch.DrawString(robotoRegular, name, textPosition, Color.White);
+            spriteBatch.DrawString(regular, name, textPosition, Color.White);
         }
         public void Update(GameTime gameTime)
         {
-            textPosition = new Vector2(x + rectangle.Width / 2 - (robotoRegular.MeasureString(name).X / 2), y + rectangle.Height / 2 - (robotoRegular.MeasureString(name).Y / 2));
+            textPosition = new Vector2(x + rectangle.Width / 2 - (regular.MeasureString(name).X / 2), y + rectangle.Height / 2 - (regular.MeasureString(name).Y / 2));
             #region При нажатии на кнопку
             if (_previousMouseState.LeftButton == ButtonState.Released && _currentMouseState.LeftButton == ButtonState.Pressed && rectangle.Intersects(Game1.cursorRectangle))
             {
@@ -76,11 +76,11 @@ namespace BloodSim.UI.PauseMenu
         }
         public void LoadContent(ContentManager Content)
         {
-            robotoRegular = Content.Load<SpriteFont>("robotoRegular");        //  Загрузка конента для шрита
+            regular = Content.Load<SpriteFont>("regular");        //  Загрузка конента для шрита
             rectangle = new Rectangle((int)x, (int)y, 190, 40);        // Ректенгл карты
 
             x = Game1.gameWidth / 2 - rectangle.Width / 2;
-            y = (rectangle.Y + (rectangle.Height / 2)) - (robotoRegular.MeasureString(name).Y / 2);
+            y = (rectangle.Y + (rectangle.Height / 2)) - (regular.MeasureString(name).Y / 2);
             rectangle = new Rectangle((int)x, (int)y, 190, 40);        // Ректенгл карты
 
             clickSound = Content.Load<SoundEffect>("clickSound");       //  Загрузка конента для звука клика

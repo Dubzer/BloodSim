@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodSim", "BloodSim.csproj", "{F3C1D23D-1FDD-44CC-A5D1-B610D797AC20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3C1D23D-1FDD-44CC-A5D1-B610D797AC20}.Debug|x86.ActiveCfg = Debug|x86
+		{F3C1D23D-1FDD-44CC-A5D1-B610D797AC20}.Debug|x86.Build.0 = Debug|x86
+		{F3C1D23D-1FDD-44CC-A5D1-B610D797AC20}.Release|x86.ActiveCfg = Release|x86
+		{F3C1D23D-1FDD-44CC-A5D1-B610D797AC20}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B95A726F-BCCC-4755-BB38-37D6E2EA855B}
+	EndGlobalSection
+EndGlobal

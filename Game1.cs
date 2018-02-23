@@ -24,14 +24,14 @@ namespace BloodSim
         {
             Playing,
             Pause,
-            Shop
+            Shop,
+            MainMenu
         }
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         static public Random random = new Random(unchecked((int)(DateTime.Now.Ticks)));
-
         static public List<Cell> cellList = new List<Cell>();
         static public List<Bacterium> bacteriumList = new List<Bacterium>();
         static public List<Eritro> eritroList = new List<Eritro>();
@@ -49,7 +49,7 @@ namespace BloodSim
         public Eritro er1 = new Eritro(random);
         public Leiko le1 = new Leiko(random);
         public Trombo tr1 = new Trombo(random);
-        #region
+        #region ui
         Shop shop = new Shop();
         PauseMenu pauseMenu = new PauseMenu("Пауза");
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
@@ -58,12 +58,12 @@ namespace BloodSim
         public static int gameWidth = 1920;
         public static int gameHeight = 1080;
         public Cursor cursor = new Cursor(); // Курсор
+        MainMenu mainMenu = new MainMenu("Главное меню");
 
         public static Rectangle cursorRectangle;
         public static string cursorTexture;
         private bool isShopMenuVisible = false;
         private bool isShowPauseMenuVisible = true;
-        public static State gameState = State.Playing;
 
         #endregion
 		
@@ -82,6 +82,7 @@ namespace BloodSim
 
         bool musicPlayed = false;
 
+        public static State gameState = State.MainMenu;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -127,7 +128,7 @@ namespace BloodSim
             shopButton.LoadContent(Content);
             closeShopButton.LoadContent(Content);
             shop.LoadContent(Content);
-
+            mainMenu.LoadContent(Content);
             #endregion
             for (int i = 0; i < wallList.Count; i++)
             {
@@ -165,7 +166,6 @@ namespace BloodSim
                 case State.Playing:
                     pauseButton.Update(gameTime);
                     shopButton.Update(gameTime);
-
                     #region Обновление игровых объектов
                     for (int i = 0; i < eritroList.Count; i++)
                     {
@@ -223,6 +223,9 @@ namespace BloodSim
                 case State.Shop:
                     closeShopButton.Update(gameTime);
                     shop.Update(gameTime);
+                    break;
+                case State.MainMenu:
+                    mainMenu.Update(gameTime);
                     break;
 
             }
@@ -326,6 +329,11 @@ namespace BloodSim
                         shop.Draw(spriteBatch);
                         closeShopButton.Draw(spriteBatch);
                         break;
+                    case State.MainMenu:
+                        background.Draw(spriteBatch);
+                        mainMenu.Draw(spriteBatch);
+                        break;
+
                 }
                 cursor.Draw(spriteBatch); // Отрисовка курсора 
             }

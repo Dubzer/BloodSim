@@ -22,7 +22,7 @@ namespace BloodSim
         private Rectangle cardRectangle;        // Ректенгл карточки
         private Rectangle itemRectangle;        // Ректенгл предмета
         private Color cardColor;        // Цвет карточки
-        private SpriteFont robotoBold;       // Шрифты
+        private SpriteFont fontBold, fontRegular;       // Шрифты
         private SoundEffect clickSound;     // Звук клика
         private int cost;       // Стоимость предмета 
         #region Управление мышью
@@ -47,10 +47,10 @@ namespace BloodSim
         {
             spriteBatch.Draw(cardTexture, cardRectangle, cardColor);        //  Отрисовка карточки
             spriteBatch.Draw(itemTexture, itemRectangle, Color.White);      //  Отрисовка предмета
-            spriteBatch.DrawString(robotoBold, name,  new Vector2(115, position.Y + 5), Color.Black);       //  Отрисовка названия предмета
-            spriteBatch.DrawString(robotoBold, description, new Vector2(115, position.Y + 50 ), Color.Black);        // Отрисовка описания предмета
-            spriteBatch.DrawString(robotoBold, "Магазин", new Vector2(10, 10), Color.Black);        // Надпись магазин
-            spriteBatch.DrawString(robotoBold, cost.ToString() + "$", new Vector2(cardRectangle.X + 39, cardRectangle.Y + 20), Color.Black);     // Отрисовка стоимости предмета
+            spriteBatch.DrawString(fontBold, name,  new Vector2(115, position.Y + 5), Color.Black);       //  Отрисовка названия предмета
+            spriteBatch.DrawString(fontRegular, description, new Vector2(115, position.Y + 50 ), Color.Black);        // Отрисовка описания предмета
+            spriteBatch.DrawString(fontBold, "Магазин", new Vector2(10, 10), Color.Black);        // Надпись магазин
+            spriteBatch.DrawString(fontRegular, cost.ToString() + "$", new Vector2(cardRectangle.X + 39, cardRectangle.Y + 20), Color.Black);     // Отрисовка стоимости предмета
         }       //  Отрисовка
 
         public void Update(GameTime gameTime)
@@ -97,7 +97,8 @@ namespace BloodSim
         {
             itemTexture = Content.Load<Texture2D>(item);        //  Загрузка контента для предмета
             cardTexture = Content.Load<Texture2D>("card");      //  Загрузка конента для карточки
-            robotoBold = Content.Load<SpriteFont>("robotoBold");        //  Загрузка конента для шрита
+            fontRegular = Content.Load<SpriteFont>("regular");      //  Загрузка конента для шрифта
+            fontBold = Content.Load<SpriteFont>("bold");        //  Загрузка конента для шрита
             clickSound = Content.Load<SoundEffect>("clickSound");       //  Загрузка конента для звука клика
 
         }       //  Загрузка контента
