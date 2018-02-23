@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using BloodSim.UI.PauseMenu;
+using Shop;
+using System.Diagnostics;
 
 namespace BloodSim
 {
@@ -17,6 +20,13 @@ namespace BloodSim
     /// </summary>
     public class Game1 : Game
     {
+        public enum State
+        {
+            Playing,
+            Pause,
+            Shop
+        }
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -39,7 +49,23 @@ namespace BloodSim
         public Eritro er1 = new Eritro(random);
         public Leiko le1 = new Leiko(random);
         public Trombo tr1 = new Trombo(random);
+        #region
+        Shop shop = new Shop();
+        PauseMenu pauseMenu = new PauseMenu("Пауза");
+        Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
+        Button closeShopButton = new Button("closeIcon", new Vector2(25, gameHeight - 75));
+        Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
+        public static int gameWidth = 1280;
+        public static int gameHeight = 720;
+        public Cursor cursor = new Cursor(); // Курсор
 
+        public static Rectangle cursorRectangle;
+        public static string cursorTexture;
+        private bool isShopMenuVisible = false;
+        private bool isShowPauseMenuVisible = true;
+        public static State gameState = State.Playing;
+
+        #endregion
         public Background background = new Background();
 
         Song music;
@@ -55,7 +81,15 @@ namespace BloodSim
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
             //graphics.ToggleFullScreen();
-
+            #region
+            graphics.PreferredBackBufferWidth = gameWidth;
+            graphics.PreferredBackBufferHeight = gameHeight;
+            Debug.Print("инициалировано");
+            cursorTexture = "cursorNormal";
+            shopButton.clicked += OpenShopMenu;
+            closeShopButton.clicked += CloseShopMenu;
+            pauseButton.clicked += OpenPauseMenu;
+            #endregion
             graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             for (int i = 0; i < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 200 + 1; i++)
@@ -88,7 +122,15 @@ namespace BloodSim
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            #region
+            pauseMenu.LoadContent(Content);
+            cursor.Texture = Content.Load<Texture2D>(cursorTexture); // Загрузка контента для курсора
+            pauseButton.LoadContent(Content);
+            shopButton.LoadContent(Content);
+            closeShopButton.LoadContent(Content);
+            shop.LoadContent(Content);
 
+            #endregion
             for (int i = 0; i < cellList.Count; i++)
             {
                 cellList[i].LoadContent(Content);
@@ -122,92 +164,175 @@ namespace BloodSim
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            #region Обновление игровых объектов
-            for (int i = 0; i < eritroList.Count; i++)
+            switch (gameState)
             {
-                eritroList[i].Update(gameTime, new Rectangle(100, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + eritroList[i].boundingBox.Height /*- eritroList[i].boundingBox.Height*/, 2, 2), wallList);
+                case State.Pause:
+                    pauseMenu.Update(gameTime);
+                    break;
+                case State.Playing:
+                    pauseButton.Update(gameTime);
+                    shopButton.Update(gameTime);
+
+                    #region Обновление игровых объектов
+                    for (int i = 0; i < eritroList.Count; i++)
+                    {
+                        eritroList[i].Update(gameTime, new Rectangle(100, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + eritroList[i].boundingBox.Height /*- eritroList[i].boundingBox.Height*/, 2, 2), wallList);
+                    }
+
+                    for (int i = 0; i < bacteriumList.Count; i++)
+                    {
+                        bacteriumList[i].Update(gameTime, cellList, wallList);
+                    }
+
+                    for (int i = 0; i < leikoList.Count; i++)
+                    {
+                        leikoList[i].Update(gameTime, bacteriumList, wallList);
+                    }
+
+                    for (int i = 0; i < tromboList.Count; i++)
+                    {
+                        tromboList[i].Update(gameTime, wallList);
+                    }
+
+                    for (int i = 0; i < wallList.Count; i++)
+                    {
+                        wallList[i].Update(gameTime);
+                    }
+
+                    if (musicPlayed == false)
+                    {
+                        MediaPlayer.Play(music);
+                        MediaPlayer.Volume = .5f;
+
+                        musicPlayed = true;
+                    }
+
+                    hud.Update(gameTime, oxygenPoints);
+                    background.Update(gameTime);
+                    #endregion
+
+                    #region Очистка от уничтоженных объектов
+                    ClearAll();
+                    #endregion
+
+                    #region Создание бактерий
+                    spawnTimer++;
+                    if (spawnTimer == 500)
+                    {
+                        SpawnBacterium(1);
+                        spawnTimer = 0;
+                    }
+                    #endregion
+
+                    break;
+                case State.Shop:
+                    closeShopButton.Update(gameTime);
+                    shop.Update(gameTime);
+                    break;
+
             }
+            #region UI
+            MouseState CurrentMouseState = Mouse.GetState(); // Считывание текущего состояния мыши
+            cursor.Position = new Vector2(CurrentMouseState.X, CurrentMouseState.Y); // Привязка позиции внутриигрового курсора к десктопному 
+            cursorRectangle = new Rectangle((int)cursor.Position.X, (int)cursor.Position.Y, 5, 5);
 
-            for (int i = 0; i < bacteriumList.Count; i++)
-            {
-                bacteriumList[i].Update(gameTime, cellList, wallList);
-            }
-
-            for (int i = 0; i < leikoList.Count; i++)
-            {
-                leikoList[i].Update(gameTime, bacteriumList, wallList);
-            }
-
-            for (int i = 0; i < tromboList.Count; i++)
-            {
-                tromboList[i].Update(gameTime, wallList);
-            }
-
-            for (int i = 0; i < wallList.Count; i++)
-            {
-                wallList[i].Update(gameTime);
-            }
-
-            if (musicPlayed == false)
-            {
-                MediaPlayer.Play(music);
-                MediaPlayer.Volume = .5f;
-
-                musicPlayed = true;
-            }
-
-            hud.Update(gameTime, oxygenPoints);
-            background.Update(gameTime);
             #endregion
-
-            #region Очистка от уничтоженных объектов
-            ClearAll();
-            #endregion
-
-            #region Создание бактерий
-            spawnTimer++;
-            if(spawnTimer == 500)
-            {
-                SpawnBacterium(1);
-                spawnTimer = 0;
-            }
-            #endregion
-
-
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color(14, 9, 32));
-
             spriteBatch.Begin();
             {
-                background.Draw(spriteBatch);
-                for (int i = 0; i < cellList.Count; i++)
+                switch (gameState)
                 {
-                    cellList[i].Draw(spriteBatch);
-                }
-                
-                for (int i = 0; i < bacteriumList.Count; i++)
-                {
-                    bacteriumList[i].Draw(spriteBatch);
-                }
+                    case State.Pause:
+                        background.Draw(spriteBatch);
+                        for (int i = 0; i < cellList.Count; i++)
+                        {
+                            cellList[i].Draw(spriteBatch);
+                        }
 
-                for (int i = 0; i < leikoList.Count; i++)
-                {
-                    leikoList[i].Draw(spriteBatch);
-                }
-                for (int i = 0; i < wallList.Count; i++)
-                {
-                    wallList[i].Draw(spriteBatch);
-                }
-                for (int i = 0; i < tromboList.Count; i++)
-                {
-                    tromboList[i].Draw(spriteBatch);
-                }
+                        for (int i = 0; i < bacteriumList.Count; i++)
+                        {
+                            bacteriumList[i].Draw(spriteBatch);
+                        }
 
-                hud.Draw(spriteBatch);
+                        for (int i = 0; i < leikoList.Count; i++)
+                        {
+                            leikoList[i].Draw(spriteBatch);
+                        }
+                        for (int i = 0; i < wallList.Count; i++)
+                        {
+                            wallList[i].Draw(spriteBatch);
+                        }
+                        for (int i = 0; i < tromboList.Count; i++)
+                        {
+                            tromboList[i].Draw(spriteBatch);
+                        }
+
+                        pauseMenu.Draw(spriteBatch);
+                        break;
+                    case State.Playing:
+                        background.Draw(spriteBatch);
+                        for (int i = 0; i < cellList.Count; i++)
+                        {
+                            cellList[i].Draw(spriteBatch);
+                        }
+
+                        for (int i = 0; i < bacteriumList.Count; i++)
+                        {
+                            bacteriumList[i].Draw(spriteBatch);
+                        }
+
+                        for (int i = 0; i < leikoList.Count; i++)
+                        {
+                            leikoList[i].Draw(spriteBatch);
+                        }
+                        for (int i = 0; i < wallList.Count; i++)
+                        {
+                            wallList[i].Draw(spriteBatch);
+                        }
+                        for (int i = 0; i < tromboList.Count; i++)
+                        {
+                            tromboList[i].Draw(spriteBatch);
+                        }
+
+                        hud.Draw(spriteBatch);
+                        shopButton.Draw(spriteBatch);
+                        pauseButton.Draw(spriteBatch);
+                        break;
+                    case State.Shop:
+                        background.Draw(spriteBatch);
+                        for (int i = 0; i < cellList.Count; i++)
+                        {
+                            cellList[i].Draw(spriteBatch);
+                        }
+
+                        for (int i = 0; i < bacteriumList.Count; i++)
+                        {
+                            bacteriumList[i].Draw(spriteBatch);
+                        }
+
+                        for (int i = 0; i < leikoList.Count; i++)
+                        {
+                            leikoList[i].Draw(spriteBatch);
+                        }
+                        for (int i = 0; i < wallList.Count; i++)
+                        {
+                            wallList[i].Draw(spriteBatch);
+                        }
+                        for (int i = 0; i < tromboList.Count; i++)
+                        {
+                            tromboList[i].Draw(spriteBatch);
+                        }
+
+                        shop.Draw(spriteBatch);
+                        closeShopButton.Draw(spriteBatch);
+                        break;
+                }
+                cursor.Draw(spriteBatch); // Отрисовка курсора 
             }
             spriteBatch.End();
 
@@ -312,6 +437,26 @@ namespace BloodSim
                 i--;
             }
         }
+        #endregion
+
+        #region НУЖНО БОЛЬШЕ КОСТЫЛЕЙ
+        void OpenShopMenu()
+        {
+            gameState = State.Shop;
+        }
+        void CloseShopMenu()
+        {
+            gameState = State.Playing;
+        }
+        void OpenPauseMenu()
+        {
+            gameState = State.Pause;
+        }
+        void ClosePauseMenu()
+        {
+            gameState = State.Playing;
+        }
+
         #endregion
     }
 }
