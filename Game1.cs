@@ -53,7 +53,7 @@ namespace BloodSim
         Shop shop = new Shop();
         PauseMenu pauseMenu = new PauseMenu("Пауза");
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
-        Button closeShopButton = new Button("closeIcon", new Vector2(25, gameHeight - 75));
+        Button closeShopButton = new Button("closeIcon", new Vector2(gameWidth - 75, 25));
         Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
         public static int gameWidth = 1920;
         public static int gameHeight = 1080;
@@ -90,7 +90,7 @@ namespace BloodSim
 
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-
+            graphics.ToggleFullScreen();
             #region 
             graphics.PreferredBackBufferWidth = gameWidth;
             graphics.PreferredBackBufferHeight = gameHeight;

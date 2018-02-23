@@ -49,7 +49,7 @@ namespace BloodSim.UI.PauseMenu
         }
         public void Update(GameTime gameTime)
         {
-            y = (rectangle.Y + (rectangle.Height / 2)) - (fontRegular.MeasureString(name).Y / 2) + y_cord;
+            y = (rectangle.Y + (rectangle.Height / 2)) - (fontRegular.MeasureString(name).Y / 2);
             textPosition = new Vector2(x + rectangle.Width / 2 - (fontRegular.MeasureString(name).X / 2), y + rectangle.Height / 2 - (fontRegular.MeasureString(name).Y / 2));
             #region При нажатии на кнопку
             if (_previousMouseState.LeftButton == ButtonState.Released && _currentMouseState.LeftButton == ButtonState.Pressed && rectangle.Intersects(Game1.cursorRectangle))
