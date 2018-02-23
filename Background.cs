@@ -27,7 +27,7 @@ namespace BloodSim
         }
 
         public void Update(GameTime gameTime)
-        {
+        {   
             particleRectangle.Y += 1;
             particleRectangle2.Y += 1;
 

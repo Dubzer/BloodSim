@@ -11,14 +11,11 @@
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/particles.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/leiko.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/trombo.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/eritro.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/hpBar.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/cell.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/bacterium.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/background.jpg</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/music1.mp3</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/kill.wav</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/wall.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/bite.wav</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/item1.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/pauseIcon.png</File>
@@ -41,5 +38,8 @@
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/regular.spritefont</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bold42.spritefont</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bold.spritefont</File>
+    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/wall.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/background.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/eritro.png</File>
   </SourceFiles>
 </SourceFileCollection>
