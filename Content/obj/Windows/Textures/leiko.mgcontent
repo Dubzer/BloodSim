@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/leiko.png</SourceFile>
-  <SourceTime>2018-02-23T12:45:11.2514365+03:00</SourceTime>
-  <DestFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bin/Windows/Textures/leiko.xnb</DestFile>
-  <DestTime>2018-02-23T12:46:06.0819179+03:00</DestTime>
+  <SourceFile>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/leiko.png</SourceFile>
+  <SourceTime>2017-12-01T20:14:33.6142092+03:00</SourceTime>
+  <DestFile>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/bin/Windows/Textures/leiko.xnb</DestFile>
+  <DestTime>2018-02-23T14:44:26.9236974+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T18:05:36+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

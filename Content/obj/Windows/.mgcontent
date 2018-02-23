@@ -4,40 +4,39 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/button.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/Main_Menu_Background_1000x1000.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/Menu_Background_1000x1000 (1).png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/Menu_Background_1000x1000.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/particles.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/leiko.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/trombo.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/eritro.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/hpBar.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/cell.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/bacterium.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/background.jpg</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/music1.mp3</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/kill.wav</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/wall.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/bite.wav</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/item1.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/pauseIcon.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/robotoBold.spritefont</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/robotoBold42.spritefont</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/robotoRegular.spritefont</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/shopIcon.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/TestImage.jpg</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/top.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/background.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/button.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/buttonBlank.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/buy.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/card.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/clickSound.wav</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/closeButton.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/closeIcon.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/cursorLink.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/cursorNormal.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/item0.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/button.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/Main_Menu_Background_1000x1000.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/Menu_Background_1000x1000 (1).png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/Menu_Background_1000x1000.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/particles.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/leiko.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/trombo.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/eritro.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/hpBar.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/cell.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/bacterium.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/background.jpg</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Sounds/music1.mp3</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Sounds/kill.wav</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Textures/wall.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/Sounds/bite.wav</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/item1.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/pauseIcon.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/robotoBold.spritefont</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/robotoBold42.spritefont</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/shopIcon.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/TestImage.jpg</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/top.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/background.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/button.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/buttonBlank.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/buy.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/card.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/clickSound.wav</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/closeButton.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/closeIcon.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/cursorLink.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/cursorNormal.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim/BloodSim/Content/item0.png</File>
   </SourceFiles>
 </SourceFileCollection>

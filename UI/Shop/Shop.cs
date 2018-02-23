@@ -10,12 +10,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using System;
 
 namespace BloodSim
 {
     class Shop
     {
-        private SpriteFont robotoBold, robotoRegular;
+        public event Action OnClick0;
+        public event Action OnClick1;
+
+        private SpriteFont robotoBold;
 
         private Texture2D topTexture;
         private Rectangle topRectangle;
@@ -52,7 +56,17 @@ namespace BloodSim
             _previousMouseState = _currentMouseState;
             _currentMouseState = Mouse.GetState();
 
+            if (card0.hasBeenClicked)
+            {
+                card0.hasBeenClicked = false;
+                OnClick0();
+            }
 
+            if (card1.hasBeenClicked)
+            {
+                card1.hasBeenClicked = false;
+                OnClick1();
+            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -62,7 +76,7 @@ namespace BloodSim
             card1.Draw(spriteBatch);
             spriteBatch.Draw(topTexture, topRectangle, Color.White);
             spriteBatch.DrawString(robotoBold, "Магазин", new Vector2(10, 4), Color.Black);
-            spriteBatch.DrawString(robotoRegular, "У вас: " + money + "$", new Vector2(12, 48), Color.Black);
+            spriteBatch.DrawString(robotoBold, "У вас: " + money + "$", new Vector2(12, 48), Color.Black);
         }
         public void LoadContent(ContentManager Content)
         {
@@ -71,7 +85,6 @@ namespace BloodSim
             card0.LoadContent(Content);
             card1.LoadContent(Content);
             robotoBold = Content.Load<SpriteFont>("robotoBold");
-            robotoRegular = Content.Load<SpriteFont>("robotoRegular");
             _currentMouseState = Mouse.GetState();
             _previousMouseState = _currentMouseState;
         }

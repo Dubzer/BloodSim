@@ -55,8 +55,8 @@ namespace BloodSim
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
         Button closeShopButton = new Button("closeIcon", new Vector2(25, gameHeight - 75));
         Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
-        public static int gameWidth = 1280;
-        public static int gameHeight = 720;
+        public static int gameWidth = 1920;
+        public static int gameHeight = 1080;
         public Cursor cursor = new Cursor(); // Курсор
 
         public static Rectangle cursorRectangle;
@@ -66,6 +66,16 @@ namespace BloodSim
         public static State gameState = State.Playing;
 
         #endregion
+		
+		#region Стандартный контент
+        Texture2D eritroTexture;
+        Texture2D tromboTexture;
+        Texture2D leikoTexture;
+        Texture2D bacteriumTexture;
+        SoundEffect _bite_soundEffect;
+        SoundEffect _death_soundEffect;
+        #endregion
+		
         public Background background = new Background();
 
         Song music;
@@ -80,8 +90,7 @@ namespace BloodSim
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
 
-            //graphics.ToggleFullScreen();
-            #region
+            #region 
             graphics.PreferredBackBufferWidth = gameWidth;
             graphics.PreferredBackBufferHeight = gameHeight;
             Debug.Print("инициалировано");
@@ -89,34 +98,23 @@ namespace BloodSim
             shopButton.clicked += OpenShopMenu;
             closeShopButton.clicked += CloseShopMenu;
             pauseButton.clicked += OpenPauseMenu;
+
+            shop.OnClick0 += BuyEritro;
+            shop.OnClick1 += BuyLeiko;
             #endregion
-            graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
             for (int i = 0; i < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 200 + 1; i++)
             {
                 wallList.Add(new Wall());
             }
-
-            eritroList.Add(er1);
-            cellList.Add(er1);
-            tromboList.Add(tr1);
-
-            //tr1.hp = 0;
-
-            leikoList.Add(le1);
-            cellList.Add(le1);
-            cellList.Add(tr1);
-
-            wallList[3].hp = 0;
-            wallList[5].hp = 0;
-
-
-            //ba2.position = new Vector2(1920,600);
         }
 
         protected override void Initialize()
         {
             base.Initialize();
+
+            SpawnEritro(1);
+            SpawnLeiko(1);
         }
 
         protected override void LoadContent()
@@ -131,22 +129,17 @@ namespace BloodSim
             shop.LoadContent(Content);
 
             #endregion
-            for (int i = 0; i < cellList.Count; i++)
-            {
-                cellList[i].LoadContent(Content);
-            }
-            for (int i = 0; i < bacteriumList.Count; i++)
-            {
-                bacteriumList[i].LoadContent(Content);
-            }
             for (int i = 0; i < wallList.Count; i++)
             {
                 wallList[i].LoadContent(Content);
             }
-            for (int i = 0; i < tromboList.Count; i++)
-            {
-                tromboList[i].LoadContent(Content);
-            }
+
+            eritroTexture = Content.Load<Texture2D>("Textures/eritro");
+            leikoTexture = Content.Load<Texture2D>("Textures/leiko");
+            bacteriumTexture = Content.Load<Texture2D>("Textures/bacterium");
+            tromboTexture = Content.Load<Texture2D>("Textures/trombo");
+            _bite_soundEffect = Content.Load<SoundEffect>("Sounds/bite");
+            _death_soundEffect = Content.Load<SoundEffect>("Sounds/kill");
 
             background.LoadContent(Content);
             music = Content.Load<Song>("Sounds/music1");
@@ -221,6 +214,8 @@ namespace BloodSim
                     {
                         SpawnBacterium(1);
                         spawnTimer = 0;
+
+                        wallList[random.Next(0, wallList.Count)].hp = 0;
                     }
                     #endregion
 
@@ -340,15 +335,15 @@ namespace BloodSim
         }
 
         #region УПРАВЛЕНИЕ ИГРОВЫМ ПРОЦЕССОМ
-        protected void SpawnBacterium(int amount)
+         protected void SpawnBacterium(int amount)
         {
             for (int i = 0; i < amount; i++)
             {
                 Bacterium bacteriumExample = new Bacterium(random)
                 {
-                    texture = Content.Load<Texture2D>("Textures/bacterium"),
-                    death_soundEffect = Content.Load<SoundEffect>("Sounds/kill"),
-                    bite_soundEffect = Content.Load<SoundEffect>("Sounds/bite")
+                    texture = bacteriumTexture,
+                    death_soundEffect = _death_soundEffect,
+                    bite_soundEffect = _bite_soundEffect
                 };
                 bacteriumList.Add(bacteriumExample);
             }
@@ -356,30 +351,45 @@ namespace BloodSim
 
         protected void SpawnEritro(int amount)
         {
-            Eritro eritroExample = new Eritro(random)
+            for (int i = 0; i < amount; i++)
             {
-                texture = Content.Load<Texture2D>("Textures/eritro"),
-                death_soundEffect = Content.Load<SoundEffect>("Sounds/kill")
-            };
-            eritroList.Add(eritroExample);
-            cellList.Add(eritroExample);
+                Eritro eritroExample = new Eritro(random)
+                {
+                    texture = eritroTexture,
+                    death_soundEffect = _death_soundEffect
+                };
+                eritroList.Add(eritroExample);
+                cellList.Add(eritroExample);
+            }
         }
 
         protected void SpawnLeiko(int amount)
         {
-            Leiko leikoExample = new Leiko(random)
+            for (int i = 0; i < amount; i++)
             {
-                texture = Content.Load<Texture2D>("Textures/leiko"),
-                death_soundEffect = Content.Load<SoundEffect>("Sounds/kill"),
-                bite_soundEffect = Content.Load<SoundEffect>("Sounds/bite")
-            };
-            leikoList.Add(leikoExample);
-            cellList.Add(leikoExample);
+                Leiko leikoExample = new Leiko(random)
+                {
+                    texture = leikoTexture,
+                    death_soundEffect = _death_soundEffect,
+                    bite_soundEffect = _bite_soundEffect
+                };
+                leikoList.Add(leikoExample);
+                cellList.Add(leikoExample);
+            }
         }
 
         protected void SpawnTrombo(int amount)
         {
-
+            for (int i = 0; i < amount; i++)
+            {
+                Trombo tromboExample = new Trombo(random)
+                {
+                    texture = tromboTexture,
+                    death_soundEffect = _death_soundEffect
+                };
+                tromboList.Add(tromboExample);
+                cellList.Add(tromboExample);
+            }
         }
 
         protected void ClearAll() // Очистка списков с уже уничтоженными клетками для уменьшения нагрузки
@@ -436,6 +446,23 @@ namespace BloodSim
                 leikoList.RemoveAt(i);
                 i--;
             }
+        }
+        #endregion
+
+        #region МАГАЗИН
+        public void BuyEritro()
+        {
+            SpawnEritro(1);
+        }
+
+        public void BuyLeiko()
+        {
+            SpawnLeiko(1);
+        }
+
+        public void BuyTrombo()
+        {
+            SpawnTrombo(1);
         }
         #endregion
 

@@ -225,13 +225,6 @@
 /processorParam:TextureFormat=Compressed
 /build:robotoBold42.spritefont
 
-#begin robotoRegular.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:robotoRegular.spritefont
-
 #begin shopIcon.png
 /importer:TextureImporter
 /processor:TextureProcessor

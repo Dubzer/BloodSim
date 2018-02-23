@@ -38,11 +38,34 @@ namespace BloodSim
         {
             if (hp > 0)
             {
-                if (boundingBox.Intersects(currentTarget) && oxygenMining)
+                oxygenMining = !IsWallBroken(list);
+
+                if (!oxygenMining)
+                {
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (list[i].hp <= 0)
+                        {
+                            currentTarget = new Rectangle(list[i].boundingBox.X + 50, list[i].boundingBox.Y, list[i].boundingBox.Width, list[i].boundingBox.Height);
+                            break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+
+                if (position.Y >= currentTarget.Y && oxygenMining)
                 {
                     position.Y = -boundingBox.Height;
                     position.X = random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2);
                     Game1.oxygenPoints += 10;
+                }
+                
+                if(boundingBox.Intersects(currentTarget) && oxygenMining == false)
+                {
+                    hp -= 20;
                 }
 
                 Vector2 Direction = new Vector2(currentTarget.X, currentTarget.Y) - position;
@@ -65,6 +88,21 @@ namespace BloodSim
             death_soundEffect.Play();
 
             dead = true;
+        }
+
+        public bool IsWallBroken(List<Wall> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].hp >= 100)
+                {
+                    continue;
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }
