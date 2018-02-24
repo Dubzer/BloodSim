@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
+using System.Diagnostics;
 
 namespace BloodSim
 {
@@ -22,8 +23,8 @@ namespace BloodSim
         {
             texture = null;
             this.random = random;
-            position = new Vector2(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4), -100);
-            currentTarget = new Rectangle(100, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + 100, 2, 2);
+            currentTarget = new Rectangle(100, Game1.gameWidth + 100, 2, 2);
+            position = new Vector2(random.Next(0, Game1.gameWidth / 4), -100);
 
             OnDeath += Die;
         }
@@ -59,25 +60,31 @@ namespace BloodSim
                 if (position.Y >= currentTarget.Y && oxygenMining)
                 {
                     position.Y = -boundingBox.Height;
-                    position.X = random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2);
+                    position.X = random.Next(0, Game1.gameWidth / 2);
                     Game1.oxygenPoints += 10;
                 }
                 
                 if(boundingBox.Intersects(currentTarget) && oxygenMining == false)
                 {
-                    hp -= 20;
+                    hp = 0;
                 }
 
                 Vector2 Direction = new Vector2(currentTarget.X, currentTarget.Y) - position;
                 Direction.Normalize();
                 position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 200;
 
-                boundingBox = new Rectangle((int)position.X, (int)position.Y, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 10, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 15);
+                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 10, Game1.gameHeight / 15);
             }
-            else if (!dead)
+            if (hp <= 0)
             {
-                position = new Vector2(-1000, -1000);
-                OnDeath();
+                Debug.Print("Df");
+                if (!dead)
+                {
+                    Debug.Print("Eritro умер как бы");
+
+                    position = new Vector2(-1000, -1000);
+                    OnDeath();
+                }
             }
             
         }

@@ -9,6 +9,7 @@ namespace BloodSim
 {
     public class Leiko : Cell
     {
+
         public Rectangle currentTarget;
         public Random random;
 
@@ -24,8 +25,8 @@ namespace BloodSim
         {
             texture = null;
             this.random = random;
-            position = new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2);
             currentTarget = new Rectangle(100, 100, 2, 2);
+            position = new Vector2(Game1.gameWidth / 4, Game1.gameHeight / 2);
 
             OnDeath += Die;
         }
@@ -47,9 +48,9 @@ namespace BloodSim
                     float length = (float)Math.Sqrt(dis.X + dis.Y);
                     //float length = (float)Math.Sqrt(Math.Sqrt(dis.X + dis.Y) * Math.Sqrt(dis.X + dis.Y));
 
-                    if ((length < 2000) && (bac.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (bac.position.Y > 0) && bac.position.X < list[1].position.X)
+                    if ((length < 5000) && (bac.position.Y < Game1.gameHeight) && (bac.position.Y > 0) && bac.position.X < list[1].position.X)
                     {
-                        currentTarget = bac.boundingBox;
+                        currentTarget = new Rectangle((int)bac.position.X + bac.boundingBox.Width / 2, (int)bac.position.Y + bac.boundingBox.Height, 3, 3);
                     }
 
                     if (boundingBox.Intersects(bac.boundingBox))
@@ -70,14 +71,14 @@ namespace BloodSim
                     }*/
                 }
 
-                if ((currentTarget.X != position.X) && (currentTarget.Y != position.Y))
+                if (!currentTarget.Intersects(boundingBox))
                 {
                     Vector2 Direction = new Vector2(currentTarget.X, currentTarget.Y) - position;
                     Direction.Normalize();
                     position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 400;
                 }
 
-                boundingBox = new Rectangle((int)position.X, (int)position.Y, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 10, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10);
+                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 10, Game1.gameHeight / 10);
             }
             else
             {

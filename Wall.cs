@@ -15,19 +15,20 @@ namespace BloodSim
 
         public Wall()
         {
+            texture = null;
+
             if (Game1.wallList.Count > 0)
             {
-                position = new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4, Game1.wallList[Game1.wallList.Count - 1].boundingBox.Y + Game1.wallList[Game1.wallList.Count - 1].boundingBox.Height);
-                boundingBox = new Rectangle(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4, Game1.wallList[Game1.wallList.Count - 1].boundingBox.Y + Game1.wallList[Game1.wallList.Count - 1].boundingBox.Height, 100, 200);
+                position = new Vector2(Game1.gameWidth - Game1.gameWidth / 4, Game1.wallList[Game1.wallList.Count - 1].boundingBox.Y + Game1.wallList[Game1.wallList.Count - 1].boundingBox.Height);
+                boundingBox = new Rectangle(Game1.gameWidth - Game1.gameWidth / 4, Game1.wallList[Game1.wallList.Count - 1].boundingBox.Y + Game1.wallList[Game1.wallList.Count - 1].boundingBox.Height, 100, 200);
             }
             else
             {
-                position = new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4, 0);
-                boundingBox = new Rectangle(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4, 0, 100, 200);
+                position = new Vector2(Game1.gameWidth - Game1.gameWidth / 4, 0);
+                boundingBox = new Rectangle(Game1.gameWidth - Game1.gameWidth / 4, 0, 100, 200);
             }
-            Game1.wallList.Add(this);
-            texture = null;
 
+            Game1.wallList.Add(this);
         }
 
         public override void LoadContent(ContentManager content)

@@ -6,6 +6,8 @@ namespace BloodSim
 {
     public class HUD
     {
+        public bool spawned = false;
+
         // Oxygen
         public Texture2D oxygenBarTexture;
         public Rectangle oxygenBarRectangle;
@@ -17,8 +19,6 @@ namespace BloodSim
             // Oxygen
             oxygenBarTexture = null;
             oxygenBarCell = null;
-            oxygenBarRectangle = new Rectangle(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10, 0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10);
-            oxygenBarCellRectangle = new Rectangle(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2 - 200, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10, 400, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10);
         }
 
         public void LoadContent(ContentManager content)
@@ -36,8 +36,15 @@ namespace BloodSim
 
         public void Update(GameTime gameTime, int hp)
         {
+            if (!spawned)
+            {
+                oxygenBarRectangle = new Rectangle(Game1.gameWidth / 2, Game1.gameHeight - Game1.gameHeight / 10, 0, Game1.gameHeight / 10);
+                oxygenBarCellRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - Game1.gameHeight / 10, 400, Game1.gameHeight / 10);
+                spawned = true;
+            }
+
             // Oxygen
-            oxygenBarRectangle = new Rectangle(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 2 - 200, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10, hp, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10);
+            oxygenBarRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - Game1.gameHeight / 10, hp, Game1.gameHeight / 10);
         }
     }
 }

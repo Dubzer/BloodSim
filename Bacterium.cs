@@ -9,8 +9,11 @@ namespace BloodSim
 {
     public class Bacterium : Unit
     {
+        Random random;
+
         public event Action OnPenetration;
         public bool hasPenetrated = false;
+        public bool holeFound = false;
 
         public event Action OnDeath;
         bool dead = false;
@@ -37,16 +40,18 @@ namespace BloodSim
 
         public Bacterium(Random random)
         {
-            position = new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width + boundingBox.Width, random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
-
             OnDeath += Die;
             OnPenetration += Penetrate;
+            position = new Vector2(Game1.gameWidth + boundingBox.Width, random.Next(0, Game1.gameHeight));
+
+            this.random = random;
         }
 
         public void Update(GameTime gameTime, List<Cell> list, List<Wall> wallList)
         {
             if (hp > 0) 
             {
+
                 if (hasPenetrated)
                 {
                     foreach (Cell cell in list)
@@ -56,13 +61,13 @@ namespace BloodSim
                             Vector2 dis = new Vector2(cell.position.X, cell.position.Y) - position;
                             float length = (float)Math.Sqrt(dis.X + dis.Y);
 
-                            if ((length < 2000) && (cell.position.Y < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height) && (cell.position.Y > 0) && cell.hp > 0)
+                            if ((length < 5000) && (cell.position.Y < Game1.gameHeight) && (cell.position.Y > 0) && cell.hp > 0)
                             {
                                 currentTarget = cell.boundingBox;
                             }
                             else
                             {
-                                currentTarget = new Rectangle(200, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 2, 100, 100);
+                                currentTarget = new Rectangle(200, Game1.gameHeight / 2, 3, 3);
                             }
 
                             if (boundingBox.Intersects(cell.boundingBox))
@@ -82,19 +87,21 @@ namespace BloodSim
                 }
                 else
                 {
-                    for (int i = 0; i < wallList.Count; i++)
-                    {
-                        if (wallList[i].hp <= 0)
+                        for (int i = 0; i < wallList.Count; i++)
                         {
-                            currentTarget = new Rectangle(wallList[i].boundingBox.X + 50, wallList[i].boundingBox.Y, wallList[i].boundingBox.Width, wallList[i].boundingBox.Height);
-                            break;
+                            if (wallList[i].hp <= 0)
+                            {
+                                currentTarget = new Rectangle(wallList[i].boundingBox.X + 50, wallList[i].boundingBox.Y, 3, 3);
+                                holeFound = true;
+                                break;
+                            }
+                            else
+                            {
+                                currentTarget = new Rectangle(random.Next(Game1.gameWidth - Game1.gameWidth / 4, Game1.gameWidth), random.Next(0, Game1.gameHeight), 3, 3);
+                                holeFound = false;
+                                continue;
+                            }
                         }
-                        else
-                        {
-                            currentTarget = new Rectangle(new Random().Next(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width - GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width), 0, 100, 100);
-                            continue;
-                        }
-                    } 
                 }
 
                 /*if (new Vector2(boundingBox.X, boundingBox.Y) != new Vector2(currentTarget.X, currentTarget.Y))
@@ -103,27 +110,28 @@ namespace BloodSim
                     Direction.Normalize();
                     position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 400;
                 }*/
-                if (!(boundingBox.Intersects(currentTarget) && position.Y + boundingBox.Height < currentTarget.Y + currentTarget.Height))
+
+                if (!boundingBox.Intersects(currentTarget))
                 {
                     Vector2 Direction = new Vector2(currentTarget.X, currentTarget.Y) - position;
                     Direction.Normalize();
                     position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 400;
                 }
-                else
+                else if (holeFound)
                 {
                     OnPenetration();
                 }
 
-                if (position.Y >= GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - boundingBox.Height)
+                if (position.Y >= Game1.gameHeight - boundingBox.Height)
                 {
-                    position.Y = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height - boundingBox.Height;
+                    position.Y = Game1.gameHeight - boundingBox.Height;
                 }
                 if (position.Y <= 0)
                 {
                     position.Y = 0;
                 }
 
-                boundingBox = new Rectangle((int)position.X, (int)position.Y, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 10, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10);
+                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 10, Game1.gameHeight / 10);
             }
             else
             {

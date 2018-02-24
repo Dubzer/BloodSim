@@ -104,7 +104,11 @@ namespace BloodSim
             shop.OnClick1 += BuyLeiko;
             #endregion
 
-            for (int i = 0; i < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 200 + 1; i++)
+            for (int i = 0; i < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 200; i++)
+            {
+                wallList.Add(new Wall());
+            }
+            if (!wallList[wallList.Count - 1].boundingBox.Intersects(new Rectangle((int)wallList[0].position.X, gameHeight, 3, 3)))
             {
                 wallList.Add(new Wall());
             }
@@ -116,6 +120,7 @@ namespace BloodSim
 
             SpawnEritro(1);
             SpawnLeiko(1);
+            SpawnTrombo(1);
         }
 
         protected override void LoadContent()

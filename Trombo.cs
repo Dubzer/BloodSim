@@ -23,10 +23,11 @@ namespace BloodSim
 
         public Trombo(Random random)
         {
-            currentTarget = new Rectangle(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4), GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + 200, 2, 2);
             texture = null;
-            position = new Vector2(random.Next(0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 4), 500);
             this.random = random;
+
+            position = new Vector2(random.Next(0, Game1.gameWidth / 4), 500);
+            currentTarget = new Rectangle(random.Next(0, Game1.gameWidth / 4), Game1.gameHeight + 200, 2, 2);
 
             OnDeath += Die;
         }
@@ -62,7 +63,7 @@ namespace BloodSim
 
                     if ((length < 5000) && (wallList[i].hp < 100))
                     {
-                        currentTarget = wallList[i].boundingBox;
+                        currentTarget = new Rectangle((int)wallList[i].position.X + wallList[i].boundingBox.Width / 2, (int)wallList[i].position.Y + wallList[i].boundingBox.Height / 2, 3, 3);
                         break;
                     }
                     else
@@ -101,7 +102,7 @@ namespace BloodSim
                     position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 400;
                 }
 
-                boundingBox = new Rectangle((int)position.X, (int)position.Y, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width / 10, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 10);
+                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 10, Game1.gameHeight / 10);
             }
             else
             {
