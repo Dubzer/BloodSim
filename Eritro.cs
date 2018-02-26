@@ -39,9 +39,23 @@ namespace BloodSim
         {
             if (hp > 0)
             {
-                oxygenMining = !IsWallBroken(list);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].hp <= 0)
+                    {
+                        oxygenMining = false;
+                        currentTarget = new Rectangle(list[i].boundingBox.X + 50, list[i].boundingBox.Y, list[i].boundingBox.Width, list[i].boundingBox.Height);
+                        break;
+                    }
+                    else
+                    {
+                        oxygenMining = true;
+                        continue;
+                    }
+                }
 
-                if (!oxygenMining)
+
+                /*if (!oxygenMining)
                 {
                     for (int i = 0; i < list.Count; i++)
                     {
@@ -55,16 +69,16 @@ namespace BloodSim
                             continue;
                         }
                     }
-                }
+                }*/
 
-                if (position.Y >= currentTarget.Y && oxygenMining)
+                if ((position.Y >= Game1.gameHeight + 100) && (oxygenMining))
                 {
                     position.Y = -boundingBox.Height;
                     position.X = random.Next(0, Game1.gameWidth / 2);
                     Game1.oxygenPoints += 10;
                 }
                 
-                if(boundingBox.Intersects(currentTarget) && oxygenMining == false)
+                if (boundingBox.X > list[0].position.X)
                 {
                     hp = 0;
                 }
@@ -95,21 +109,6 @@ namespace BloodSim
             death_soundEffect.Play();
 
             dead = true;
-        }
-
-        public bool IsWallBroken(List<Wall> list)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].hp >= 100)
-                {
-                    continue;
-                }
-
-                return true;
-            }
-
-            return false;
         }
     }
 }

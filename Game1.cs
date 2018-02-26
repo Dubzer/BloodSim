@@ -25,7 +25,9 @@ namespace BloodSim
             Playing,
             Pause,
             Shop,
-            MainMenu
+            MainMenu,
+            Victory,
+            Defeat
         }
 
         GraphicsDeviceManager graphics;
@@ -44,7 +46,7 @@ namespace BloodSim
 
         HUD hud = new HUD();
 
-        static public int oxygenPoints;
+        static public int oxygenPoints = 10;
 
         public Eritro er1 = new Eritro(random);
         public Leiko le1 = new Leiko(random);
@@ -55,8 +57,8 @@ namespace BloodSim
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
         Button closeShopButton = new Button("closeIcon", new Vector2(gameWidth - 75, 25));
         Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
-        public static int gameWidth = 1920;
-        public static int gameHeight = 1080;
+        public static int gameWidth = 1280;
+        public static int gameHeight = 720;
         public Cursor cursor = new Cursor(); // Курсор
         MainMenu mainMenu = new MainMenu("Главное меню");
 
@@ -102,9 +104,10 @@ namespace BloodSim
 
             shop.OnClick0 += BuyEritro;
             shop.OnClick1 += BuyLeiko;
+            shop.OnClick2 += BuyTrombo;
             #endregion
 
-            for (int i = 0; i < GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height / 200; i++)
+            for (int i = 0; i < gameHeight / 200; i++)
             {
                 wallList.Add(new Wall());
             }
@@ -167,6 +170,8 @@ namespace BloodSim
             {
                 case State.Pause:
                     pauseMenu.Update(gameTime);
+                    MediaPlayer.Pause();
+                    musicPlayed = false;
                     break;
                 case State.Playing:
                     pauseButton.Update(gameTime);
@@ -207,6 +212,16 @@ namespace BloodSim
 
                     hud.Update(gameTime, oxygenPoints);
                     background.Update(gameTime);
+
+                    /*if (oxygenPoints == hud.oxygenBarRectangle.Width)
+                    {
+                        gameState = State.Victory;
+                    }*/
+
+                    if ((oxygenPoints < 100) && (eritroList.Count == 0))
+                    {
+                        gameState = State.Defeat;
+                    }
                     #endregion
 
                     #region Очистка от уничтоженных объектов
@@ -215,7 +230,7 @@ namespace BloodSim
 
                     #region Создание бактерий
                     spawnTimer++;
-                    if (spawnTimer == 500)
+                    if (spawnTimer == 1000)
                     {
                         SpawnBacterium(1);
                         spawnTimer = 0;
@@ -227,7 +242,7 @@ namespace BloodSim
                     break;
                 case State.Shop:
                     closeShopButton.Update(gameTime);
-                    shop.Update(gameTime);
+                    shop.Update(gameTime, oxygenPoints);
                     break;
                 case State.MainMenu:
                     mainMenu.Update(gameTime);
@@ -466,16 +481,19 @@ namespace BloodSim
         public void BuyEritro()
         {
             SpawnEritro(1);
+            oxygenPoints -= 30;
         }
 
         public void BuyLeiko()
         {
             SpawnLeiko(1);
+            oxygenPoints -= 80;
         }
 
         public void BuyTrombo()
         {
             SpawnTrombo(1);
+            oxygenPoints -= 100;
         }
         #endregion
 

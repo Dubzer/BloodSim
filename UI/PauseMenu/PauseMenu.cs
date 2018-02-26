@@ -49,7 +49,7 @@ namespace BloodSim.UI.PauseMenu
             backgroundRectangle = new Rectangle(0, 0, Game1.gameWidth, Game1.gameHeight);
             button0.Update(gameTime);
             button1.Update(gameTime);
-            startPosition = new Vector2(Game1.gameWidth / 2 - bold42.MeasureString(title).Length() / 2, Game1.gameHeight / 2 - Game1.gameWidth / 8);
+            startPosition = new Vector2(Game1.gameWidth / 2 - bold42.MeasureString(title).Length() / 2, Game1.gameHeight / 7);
 
         }
         void Play()

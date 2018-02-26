@@ -14,8 +14,8 @@ namespace BloodSim.UI.PauseMenu
         #region Поля
         Texture2D TestImage;
         private SpriteFont fontBold42;
-        PauseMenuButton button1 = new PauseMenuButton(50, "Начать игру");
-        PauseMenuButton button2 = new PauseMenuButton(330, "Выход");
+        PauseMenuButton button1 = new PauseMenuButton(Game1.gameHeight / 2 - 50, "Начать игру");
+        PauseMenuButton button2 = new PauseMenuButton(Game1.gameHeight / 2, "Выход");
         Rectangle backgroundRectangle;
         Texture2D backgroundTexture;
         Color backgroundColor;
@@ -50,7 +50,7 @@ namespace BloodSim.UI.PauseMenu
             backgroundRectangle = new Rectangle(0, 0, Game1.gameWidth, Game1.gameHeight);
             button1.Update(gameTime);
             button2.Update(gameTime);
-            startPosition = new Vector2(Game1.gameWidth / 2 - fontBold42.MeasureString(title).Length() / 2, Game1.gameHeight / 2 - Game1.gameWidth / 8);
+            startPosition = new Vector2(Game1.gameWidth / 2 - fontBold42.MeasureString(title).Length() / 2, Game1.gameHeight / 4);
 
         }
         void Play()

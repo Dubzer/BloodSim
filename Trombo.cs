@@ -52,7 +52,7 @@ namespace BloodSim
             {
                 for (int i = 0; i < wallList.Count; i++)
                 {
-                    if (boundingBox.Intersects(wallList[i].boundingBox))
+                    if (boundingBox.Intersects(wallList[i].boundingBox) && (wallList[i].hp < 100))
                     {
                         wallList[i].hp++;
                         hp -= 2;
@@ -68,7 +68,7 @@ namespace BloodSim
                     }
                     else
                     {
-                        currentTarget = new Rectangle(1000, 300, 2, 2);
+                        currentTarget = new Rectangle(100, 300, 2, 2);
                         continue;
                     }
 
@@ -95,7 +95,7 @@ namespace BloodSim
                     }
                 }*/
 
-                if ((currentTarget.X != boundingBox.X) && (currentTarget.Y != boundingBox.Y))
+                if (!currentTarget.Intersects(boundingBox))
                 {
                     Vector2 Direction = new Vector2(currentTarget.X, currentTarget.Y) - position;
                     Direction.Normalize();

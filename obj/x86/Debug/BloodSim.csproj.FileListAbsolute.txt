@@ -163,3 +163,4 @@ D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\bin\Windows\x86\Debug\SharpD
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.csproj.CoreCompileInputs.cache
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.exe
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.pdb
+D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.csprojResolveAssemblyReference.cache

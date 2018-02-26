@@ -18,34 +18,35 @@ namespace BloodSim
     {
         public event Action OnClick0;
         public event Action OnClick1;
+        public event Action OnClick2;
 
         private SpriteFont fontRegular, fontBold;
 
         private Texture2D topTexture;
         private Rectangle topRectangle;
-        public static int money = 1400;
+        public static int money;
         MouseState _currentMouseState;
         MouseState _previousMouseState;
-        Card card0 = new Card(new Vector2(0, 100), "item0",100 , "Эритроцит",
-                                                                          "Эритроциты - клетки крови" + 
-                                                                          "\n" + "позвоночных животных " + 
-                                                                          "\n" + "(включая человека) и " + 
-                                                                          "\n" + "гемолимфы некоторых " +
-                                                                          "\n" + "беспозвоночных");
-        Card card1 = new Card(new Vector2(0, 300), "item1",200, "Лейкоцит",
-                                                                  "Лейкоцит - белые кровяные" +
-                                                                  "\n" + "клетки; неоднородная " +
-                                                                  "\n" + "группа различных по  " +
-                                                                  "\n" + "внешнему виду и " +
-                                                                  "\n" + "функциям клеток " +
-                                                                  "\n" + "крови человека");
-        Card card2 = new Card(new Vector2(0, 500), "item1", 250, "Лейкоцит",
-                                                  "Лейкоцит - белые кровяные" +
-                                                  "\n" + "клетки; неоднородная " +
-                                                  "\n" + "группа различных по  " +
-                                                  "\n" + "внешнему виду и " +
-                                                  "\n" + "функциям клеток " +
-                                                  "\n" + "крови человека");
+        Card card0 = new Card(new Vector2(0, 100), "Textures/eritro", 30, "Эритроцит",
+                                                                          "Эритроцит - клетка крови," +
+                                                                          "\n" + "переносящая кислород " +
+                                                                          "\n" + "по всему организму. Не " +
+                                                                          "\n" + "имеет жгутиков, а потому " +
+                                                                          "\n" + "не может удержаться " +
+                                                                          "\n" + "в сосуде при атаке бактерий ");
+        Card card1 = new Card(new Vector2(0, 300), "Textures/leiko", 80, "Лейкоцит",
+                                                                  "Лейкоцит - защитная кровя-" +
+                                                                  "\n" + "ная клетка, способная " +
+                                                                  "\n" + "самостоятельно передви-  " +
+                                                                  "\n" + "гаться по сосуду и погло- " +
+                                                                  "\n" + "щать вредоносные бактерии ");
+        Card card2 = new Card(new Vector2(0, 500), "Textures/trombo", 100, "Тромбоцит",
+                                                  "Тромбоцит - кровяная клетка,    " +
+                                                  "\n" + "выполняющая функцию под- " +
+                                                  "\n" + "держки стенок сосуды в здра- " +
+                                                  "\n" + "вии. Они прикрепляются к " +
+                                                  "\n" + "месту повреждения и заме- " +
+                                                  "\n" + "няют собой кусок стенки.");
 
         Texture2D backgound = null;
         private Rectangle backgroundRectangle;
@@ -54,7 +55,7 @@ namespace BloodSim
         {
             Debug.Print("12");
         }
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, int coins)
         {
             card0.Update(gameTime);
             card1.Update(gameTime);
@@ -76,6 +77,14 @@ namespace BloodSim
                 card1.hasBeenClicked = false;
                 OnClick1();
             }
+
+            if (card2.hasBeenClicked)
+            {
+                card2.hasBeenClicked = false;
+                OnClick2();
+            }
+
+            money = coins;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -86,7 +95,7 @@ namespace BloodSim
             card2.Draw(spriteBatch);
             spriteBatch.Draw(topTexture, topRectangle, Color.White);
             spriteBatch.DrawString(fontBold, "Магазин", new Vector2(10, 4), Color.Black);
-            spriteBatch.DrawString(fontRegular, "У вас: " + money + "$", new Vector2(12, 48), Color.Black);
+            spriteBatch.DrawString(fontRegular, "У вас: " + money + "R", new Vector2(12, 48), Color.Black);
         }
         public void LoadContent(ContentManager Content)
         {
