@@ -54,8 +54,8 @@ namespace BloodSim
                 {
                     if (boundingBox.Intersects(wallList[i].boundingBox) && (wallList[i].hp < 100))
                     {
-                        wallList[i].hp++;
-                        hp -= 2;
+                        wallList[i].hp = 100;
+                        hp = 0;
                     }
 
                     Vector2 dis = new Vector2(wallList[i].position.X, wallList[i].position.Y) - position;

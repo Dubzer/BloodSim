@@ -50,7 +50,7 @@ namespace BloodSim
             spriteBatch.DrawString(fontBold, name,  new Vector2(115, position.Y + 5), Color.Black);       //  Отрисовка названия предмета
             spriteBatch.DrawString(fontRegular, description, new Vector2(115, position.Y + 50 ), Color.Black);        // Отрисовка описания предмета
             spriteBatch.DrawString(fontBold, "Магазин", new Vector2(10, 10), Color.Black);        // Надпись магазин
-            spriteBatch.DrawString(fontRegular, cost.ToString() + "$", new Vector2(cardRectangle.X + 39, cardRectangle.Y + 20), Color.Black);     // Отрисовка стоимости предмета
+            spriteBatch.DrawString(fontRegular, cost.ToString() + "R", new Vector2(cardRectangle.X + 39, cardRectangle.Y + 20), Color.Black);     // Отрисовка стоимости предмета
         }       //  Отрисовка
 
         public void Update(GameTime gameTime)

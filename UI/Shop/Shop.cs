@@ -27,20 +27,20 @@ namespace BloodSim
         public static int money;
         MouseState _currentMouseState;
         MouseState _previousMouseState;
-        Card card0 = new Card(new Vector2(0, 100), "Textures/eritro", 30, "Эритроцит",
+        Card card0 = new Card(new Vector2(0, 100), "Textures/eritro", 20, "Эритроцит",
                                                                           "Эритроцит - клетка крови," +
                                                                           "\n" + "переносящая кислород " +
                                                                           "\n" + "по всему организму. Не " +
                                                                           "\n" + "имеет жгутиков, а потому " +
                                                                           "\n" + "не может удержаться " +
                                                                           "\n" + "в сосуде при атаке бактерий ");
-        Card card1 = new Card(new Vector2(0, 300), "Textures/leiko", 40, "Лейкоцит",
+        Card card1 = new Card(new Vector2(0, 300), "Textures/leiko", 30, "Лейкоцит",
                                                                   "Лейкоцит - защитная кровя-" +
                                                                   "\n" + "ная клетка, способная " +
                                                                   "\n" + "самостоятельно передви-  " +
                                                                   "\n" + "гаться по сосуду и погло- " +
                                                                   "\n" + "щать вредоносные бактерии ");
-        Card card2 = new Card(new Vector2(0, 500), "Textures/trombo", 50, "Тромбоцит",
+        Card card2 = new Card(new Vector2(0, 500), "Textures/trombo", 40, "Тромбоцит",
                                                   "Тромбоцит - кровяная клетка,    " +
                                                   "\n" + "выполняющая функцию под- " +
                                                   "\n" + "держки стенок сосуды в здра- " +
@@ -55,7 +55,7 @@ namespace BloodSim
         {
             Debug.Print("12");
         }
-        public void Update(GameTime gameTime, int coins)
+        public void Update(GameTime gameTime)
         {
             card0.Update(gameTime);
             card1.Update(gameTime);
@@ -83,8 +83,6 @@ namespace BloodSim
                 card2.hasBeenClicked = false;
                 OnClick2();
             }
-
-            money = coins;
         }
         public void Draw(SpriteBatch spriteBatch)
         {

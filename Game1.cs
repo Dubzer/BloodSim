@@ -46,7 +46,7 @@ namespace BloodSim
 
         HUD hud = new HUD();
 
-        static public int oxygenPoints = 10;
+        static public int oxygenPoints;
 
         public Eritro er1 = new Eritro(random);
         public Leiko le1 = new Leiko(random);
@@ -212,6 +212,8 @@ namespace BloodSim
                         musicPlayed = true;
                     }
 
+                    Shop.money = oxygenPoints;
+
                     hud.Update(gameTime, oxygenPoints);
                     background.Update(gameTime);
 
@@ -234,7 +236,7 @@ namespace BloodSim
                     spawnTimer++;
                     if (spawnTimer == 1000)
                     {
-                        SpawnBacterium(1);
+                        SpawnBacterium(random.Next(0, 2));
                         spawnTimer = 0;
 
                         SoundEffect.MasterVolume = 0.5f;
@@ -247,7 +249,7 @@ namespace BloodSim
                     break;
                 case State.Shop:
                     closeShopButton.Update(gameTime);
-                    shop.Update(gameTime, oxygenPoints);
+                    shop.Update(gameTime);
                     break;
                 case State.MainMenu:
                     mainMenu.Update(gameTime);
