@@ -165,6 +165,8 @@ namespace BloodSim
 
         protected override void Update(GameTime gameTime)
         {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Delete))
+                Exit();
             switch (gameState)
             {
                 case State.Pause:
