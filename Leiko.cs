@@ -44,13 +44,18 @@ namespace BloodSim
             {
                 foreach (Bacterium bac in Blist)
                 {
-                    Vector2 dis = new Vector2(bac.position.X, bac.position.Y) - position;
+                    Vector2 dis = bac.position - position;
                     float length = (float)Math.Sqrt(dis.X + dis.Y);
                     //float length = (float)Math.Sqrt(Math.Sqrt(dis.X + dis.Y) * Math.Sqrt(dis.X + dis.Y));
 
-                    if ((length < 5000) && (bac.position.Y < Game1.gameHeight) && (bac.position.Y > 0) && bac.position.X < list[1].position.X)
+                    if ((length < 5000) && (bac.position.Y < Game1.gameHeight) && (bac.position.Y > 0) && (bac.position.X < list[1].position.X))
                     {
-                        currentTarget = new Rectangle((int)bac.position.X + bac.boundingBox.Width / 2, (int)bac.position.Y + bac.boundingBox.Height, 3, 3);
+                        //currentTarget = new Rectangle((int)bac.position.X + bac.boundingBox.Width / 2, (int)bac.position.Y + bac.boundingBox.Height / 2, 3, 3);
+                        currentTarget = bac.boundingBox;
+                    }
+                    else
+                    {
+                        currentTarget = new Rectangle(random.Next(0, 500), random.Next(0, Game1.gameHeight - boundingBox.Height), 3, 3);
                     }
 
                     if (boundingBox.Intersects(bac.boundingBox))

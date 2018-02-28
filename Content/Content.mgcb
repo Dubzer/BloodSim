@@ -420,3 +420,9 @@
 /processorParam:TextureFormat=Color
 /build:Textures/mainMenuBackground.png
 
+#begin Sounds/Penetration.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Penetration.wav
+

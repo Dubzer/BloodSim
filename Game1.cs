@@ -80,6 +80,7 @@ namespace BloodSim
 		
         public Background background = new Background();
 
+        SoundEffect penetration;
         Song music;
 
         bool musicPlayed = false;
@@ -152,6 +153,7 @@ namespace BloodSim
 
             background.LoadContent(Content);
             music = Content.Load<Song>("Sounds/music1");
+            penetration = Content.Load<SoundEffect>("Sounds/Penetration");
 
             hud.LoadContent(Content);
         }
@@ -235,7 +237,10 @@ namespace BloodSim
                         SpawnBacterium(1);
                         spawnTimer = 0;
 
-                        wallList[random.Next(0, wallList.Count)].hp = 0;
+                        SoundEffect.MasterVolume = 0.5f;
+                        penetration.Play();
+
+                        wallList[random.Next(2, wallList.Count)].hp = 0;
                     }
                     #endregion
 

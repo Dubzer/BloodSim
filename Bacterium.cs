@@ -61,7 +61,7 @@ namespace BloodSim
                             Vector2 dis = new Vector2(cell.position.X, cell.position.Y) - position;
                             float length = (float)Math.Sqrt(dis.X + dis.Y);
 
-                            if ((length < 5000) && (cell.position.Y < Game1.gameHeight) && (cell.position.Y > 0) && cell.hp > 0)
+                            if ((length < 5000) && (cell.position.Y < Game1.gameHeight) && (cell.position.Y > 0) && (cell.hp > 0))
                             {
                                 currentTarget = cell.boundingBox;
                             }
@@ -87,7 +87,7 @@ namespace BloodSim
                 }
                 else
                 {
-                        for (int i = 0; i < wallList.Count; i++)
+                        for (int i = 1; i < wallList.Count; i++)
                         {
                             if (wallList[i].hp <= 0)
                             {
