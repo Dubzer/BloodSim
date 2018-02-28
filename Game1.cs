@@ -165,9 +165,6 @@ namespace BloodSim
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             switch (gameState)
             {
                 case State.Pause:
@@ -253,6 +250,16 @@ namespace BloodSim
                     break;
                 case State.MainMenu:
                     mainMenu.Update(gameTime);
+                    break;
+                case State.Victory:
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                        MediaPlayer.Stop();
+                        gameState = State.MainMenu;
+                    break;
+                case State.Defeat:
+                    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                        MediaPlayer.Stop();
+                        gameState = State.MainMenu;
                     break;
 
             }
