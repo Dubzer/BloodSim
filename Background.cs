@@ -6,6 +6,8 @@ namespace BloodSim
 {
     public class Background : Unit
     {
+        public Texture2D mainMenuTexture;
+
         public Texture2D particlesTexture;
         public Rectangle particleRectangle;
 
@@ -14,6 +16,7 @@ namespace BloodSim
         public override void LoadContent(ContentManager content)
         {
             texture = content.Load<Texture2D>("Textures/background");
+            mainMenuTexture = content.Load<Texture2D>("Textures/mainMenuBackground");
             particlesTexture = content.Load<Texture2D>("Textures/particles");
         }
 
@@ -44,7 +47,17 @@ namespace BloodSim
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            switch (Game1.gameState)
+            {
+                case Game1.State.MainMenu:
+                    spriteBatch.Draw(mainMenuTexture, boundingBox, Color.White);
+                    break;
+
+                default:
+                    base.Draw(spriteBatch);
+                    break;
+            }
+
             spriteBatch.Draw(particlesTexture, particleRectangle, Color.White);
             spriteBatch.Draw(particlesTexture, particleRectangle2, Color.White);
         }

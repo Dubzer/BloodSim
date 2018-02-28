@@ -164,3 +164,4 @@ D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.cspro
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.exe
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.pdb
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.csprojResolveAssemblyReference.cache
+D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\bin\Windows\x86\Debug\Content\Textures\mainMenuBackground.xnb

@@ -60,7 +60,7 @@ namespace BloodSim
         public static int gameWidth = 1280;
         public static int gameHeight = 720;
         public Cursor cursor = new Cursor(); // Курсор
-        MainMenu mainMenu = new MainMenu("Главное меню");
+        MainMenu mainMenu = new MainMenu("");
 
         public static Rectangle cursorRectangle;
         public static string cursorTexture;
