@@ -51,10 +51,6 @@ namespace BloodSim
         Texture2D backgound = null;
         private Rectangle backgroundRectangle;
 
-        public Shop()
-        {
-            Debug.Print("12");
-        }
         public void Update(GameTime gameTime)
         {
             card0.Update(gameTime);

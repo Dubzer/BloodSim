@@ -372,18 +372,6 @@
 /processorParam:TextureFormat=Compressed
 /build:bold.spritefont
 
-#begin Textures/wall.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Textures/wall.png
-
 #begin Textures/background.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -408,6 +396,12 @@
 /processorParam:TextureFormat=Color
 /build:Textures/eritro.png
 
+#begin Sounds/Penetration.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Penetration.wav
+
 #begin Textures/mainMenuBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -420,9 +414,21 @@
 /processorParam:TextureFormat=Color
 /build:Textures/mainMenuBackground.png
 
-#begin Sounds/Penetration.wav
+#begin Sounds/error.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/Penetration.wav
+/build:Sounds/error.wav
+
+#begin Textures/wall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/wall.png
 

@@ -166,3 +166,6 @@ D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.pdb
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.csprojResolveAssemblyReference.cache
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\bin\Windows\x86\Debug\Content\Textures\mainMenuBackground.xnb
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\bin\Windows\x86\Debug\Content\Sounds\Penetration.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Textures\mainMenuBackground.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Sounds\Penetration.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Sounds\error.xnb

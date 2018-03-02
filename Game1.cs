@@ -167,6 +167,8 @@ namespace BloodSim
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Delete))
                 Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.End))
+                Shop.money += 10;
             switch (gameState)
             {
                 case State.Pause:
@@ -276,7 +278,7 @@ namespace BloodSim
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(new Color(14, 9, 32));
+            GraphicsDevice.Clear(new Color(123, 17, 17));
             spriteBatch.Begin();
             {
                 switch (gameState)
@@ -366,7 +368,6 @@ namespace BloodSim
                         closeShopButton.Draw(spriteBatch);
                         break;
                     case State.MainMenu:
-                        background.Draw(spriteBatch);
                         mainMenu.Draw(spriteBatch);
                         break;
 

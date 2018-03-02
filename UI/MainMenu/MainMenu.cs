@@ -21,6 +21,13 @@ namespace BloodSim.UI.PauseMenu
         Color backgroundColor;
         Vector2 startPosition;
         string title;
+        #region Particles
+
+        public Texture2D particlesTexture;
+        public Rectangle particleRectangle;
+        public Rectangle particleRectangle2;
+
+        #endregion
         #endregion
         public MainMenu(string title)
         {
@@ -31,19 +38,21 @@ namespace BloodSim.UI.PauseMenu
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(TestImage, new Vector2(0, 0), Color.White);
-            spriteBatch.Draw(backgroundTexture, backgroundRectangle, backgroundColor);
+            spriteBatch.Draw(backgroundTexture, backgroundRectangle, Color.White);
             button1.Draw(spriteBatch);
             button2.Draw(spriteBatch);
             spriteBatch.DrawString(fontBold42, title, startPosition, Color.White);
+            spriteBatch.Draw(particlesTexture, particleRectangle, Color.White);
+            spriteBatch.Draw(particlesTexture, particleRectangle2, Color.White);
         }
         public void LoadContent(ContentManager Content)
         {
             TestImage = Content.Load<Texture2D>("TestImage");
             button1.LoadContent(Content);
             button2.LoadContent(Content);
-            backgroundTexture = Content.Load<Texture2D>("background");
+            backgroundTexture = Content.Load<Texture2D>("Textures/mainMenuBackground");
             fontBold42 = Content.Load<SpriteFont>("bold42");
+            particlesTexture = Content.Load<Texture2D>("Textures/particles");
         }
         public void Update(GameTime gameTime)
         {
@@ -51,7 +60,22 @@ namespace BloodSim.UI.PauseMenu
             button1.Update(gameTime);
             button2.Update(gameTime);
             startPosition = new Vector2(Game1.gameWidth / 2 - fontBold42.MeasureString(title).Length() / 2, Game1.gameHeight / 4);
+            #region Particles
+            particleRectangle.Y += 1;
+            particleRectangle2.Y += 1;
 
+            if (particleRectangle.Y == Game1.gameHeight)
+            {
+                particleRectangle.Y = -Game1.gameHeight;
+            }
+
+            if (particleRectangle2.Y == Game1.gameHeight)
+            {
+                particleRectangle2.Y = -Game1.gameHeight;
+            }
+
+
+            #endregion
         }
         void Play()
         {

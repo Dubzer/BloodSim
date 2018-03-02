@@ -13,11 +13,11 @@ namespace BloodSim
 
         public Rectangle particleRectangle2;
 
-        public override void LoadContent(ContentManager content)
+        public override void LoadContent(ContentManager Content)
         {
-            texture = content.Load<Texture2D>("Textures/background");
-            mainMenuTexture = content.Load<Texture2D>("Textures/mainMenuBackground");
-            particlesTexture = content.Load<Texture2D>("Textures/particles");
+            texture = Content.Load<Texture2D>("Textures/background");
+            mainMenuTexture = Content.Load<Texture2D>("Textures/mainMenuBackground");
+            particlesTexture = Content.Load<Texture2D>("Textures/particles");
         }
 
         public Background()
