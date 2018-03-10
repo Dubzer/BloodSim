@@ -64,8 +64,6 @@ namespace BloodSim
 
         public static Rectangle cursorRectangle;
         public static string cursorTexture;
-        private bool isShopMenuVisible = false;
-        private bool isShowPauseMenuVisible = true;
 
         #endregion
 		
@@ -257,13 +255,17 @@ namespace BloodSim
                     break;
                 case State.Victory:
                     if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    {
                         MediaPlayer.Stop();
                         gameState = State.MainMenu;
+                    }
                     break;
                 case State.Defeat:
                     if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    {
                         MediaPlayer.Stop();
                         gameState = State.MainMenu;
+                    }
                     break;
 
             }
@@ -498,19 +500,19 @@ namespace BloodSim
         public void BuyEritro()
         {
             SpawnEritro(1);
-            oxygenPoints -= 30;
+            oxygenPoints -= 20;
         }
 
         public void BuyLeiko()
         {
             SpawnLeiko(1);
-            oxygenPoints -= 80;
+            oxygenPoints -= 30;
         }
 
         public void BuyTrombo()
         {
             SpawnTrombo(1);
-            oxygenPoints -= 100;
+            oxygenPoints -= 40;
         }
         #endregion
 

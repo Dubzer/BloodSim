@@ -62,19 +62,19 @@ namespace BloodSim
             _previousMouseState = _currentMouseState;
             _currentMouseState = Mouse.GetState();
 
-            if (card0.hasBeenClicked)
+            if ((card0.hasBeenClicked) && (money >= 20))
             {
                 card0.hasBeenClicked = false;
                 OnClick0();
             }
 
-            if (card1.hasBeenClicked)
+            if ((card1.hasBeenClicked) && (money >= 30))
             {
                 card1.hasBeenClicked = false;
                 OnClick1();
             }
 
-            if (card2.hasBeenClicked)
+            if ((card2.hasBeenClicked) && (money >= 40))
             {
                 card2.hasBeenClicked = false;
                 OnClick2();

@@ -35,7 +35,6 @@ namespace BloodSim
             color = Color.White;
             this.icon = icon;
             this.position = position;
-            this.type = type;
             _currentMouseState = Mouse.GetState();
             _previousMouseState = _currentMouseState;
         }
