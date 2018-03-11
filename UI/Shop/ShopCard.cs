@@ -25,6 +25,7 @@ namespace BloodSim
         private SpriteFont fontBold, fontRegular;       // Шрифты
         private SoundEffect clickSound,  errorSound;     // Звук клика
         private int cost;       // Стоимость предмета 
+        public Action NotEnoughMoney;
         #region Управление мышью
         MouseState _currentMouseState;
         MouseState _previousMouseState;
@@ -66,10 +67,13 @@ namespace BloodSim
                     clickSound.Play();
                     Debug.Print("Куплено: " + name);
                 }
-                else
+                else     // Если недостаточно денег
                 {
-                    errorSound.Play();
-                    Debug.Print("Не хватает денег на: " + name);
+                    //errorSound.Play();
+                    clickSound.Play();
+
+                    NotEnoughMoney();
+                    Debug.Print("Недостаточно денег на: " + name);
                 }
                 hasBeenClicked = true;
             }

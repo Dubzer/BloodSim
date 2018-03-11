@@ -47,7 +47,7 @@ namespace BloodSim.UI.PauseMenu
             spriteBatch.Draw(texture, rectangle, color);        //  Отрисовка карточки
             spriteBatch.DrawString(fontRegular, name, textPosition, Color.White);
         }
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)   
         {
             y = (rectangle.Y + (rectangle.Height / 2)) - (fontRegular.MeasureString(name).Y / 2) - y_cord;
             textPosition = new Vector2(x + rectangle.Width / 2 - (fontRegular.MeasureString(name).X / 2), y + rectangle.Height / 2 - (fontRegular.MeasureString(name).Y / 2));

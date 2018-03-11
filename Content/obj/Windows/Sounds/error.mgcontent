@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Sounds/error.wav</SourceFile>
-  <SourceTime>2018-03-10T19:12:04.3991297+03:00</SourceTime>
-  <DestFile>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/bin/Windows/Sounds/error.xnb</DestFile>
-  <DestTime>2018-03-10T19:13:10.2483223+03:00</DestTime>
+  <SourceFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/error.wav</SourceFile>
+  <SourceTime>2018-03-10T22:28:00.8394433+03:00</SourceTime>
+  <DestFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bin/Windows/Sounds/error.xnb</DestFile>
+  <DestTime>2018-03-10T22:29:00.5506749+03:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T18:05:36+03:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

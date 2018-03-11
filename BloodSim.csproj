@@ -40,6 +40,14 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Background.cs" />
     <Compile Include="Bacterium.cs" />
@@ -54,6 +62,7 @@
     <Compile Include="UI\Button.cs" />
     <Compile Include="UI\MainMenu\MainMenu.cs" />
     <Compile Include="UI\MainMenu\MainMenuButton.cs" />
+    <Compile Include="UI\Notification\InGameNotification.cs" />
     <Compile Include="UI\PauseMenu\PauseMenu.cs" />
     <Compile Include="UI\PauseMenu\PauseMenuButton.cs" />
     <Compile Include="UI\Shop\Shop.cs" />

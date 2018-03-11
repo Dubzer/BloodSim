@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
+
 #endregion
 namespace BloodSim.UI.PauseMenu
 {
@@ -16,6 +17,7 @@ namespace BloodSim.UI.PauseMenu
         private SpriteFont fontBold42;
         PauseMenuButton button1 = new PauseMenuButton(Game1.gameHeight / 2 - 50, "Начать игру");
         PauseMenuButton button2 = new PauseMenuButton(Game1.gameHeight / 2, "Выход");
+       
         Rectangle backgroundRectangle;
         Texture2D backgroundTexture;
         Color backgroundColor;

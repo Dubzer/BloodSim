@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using BloodSim.UI.PauseMenu;
 using Shop;
 using System.Diagnostics;
+using BloodSim.UI.Notification;
 
 namespace BloodSim
 {
@@ -148,7 +149,6 @@ namespace BloodSim
             tromboTexture = Content.Load<Texture2D>("Textures/trombo");
             _bite_soundEffect = Content.Load<SoundEffect>("Sounds/bite");
             _death_soundEffect = Content.Load<SoundEffect>("Sounds/kill");
-
             background.LoadContent(Content);
             music = Content.Load<Song>("Sounds/music1");
             penetration = Content.Load<SoundEffect>("Sounds/Penetration");

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System;
+using BloodSim.UI.Notification;
 
 namespace BloodSim
 {
@@ -50,39 +51,50 @@ namespace BloodSim
 
         Texture2D backgound = null;
         private Rectangle backgroundRectangle;
-
+        public Shop()
+        {
+            InGameNotification.clicked += closeNotification;
+            card0.NotEnoughMoney += showNotification;
+            card1.NotEnoughMoney += showNotification;
+            card2.NotEnoughMoney += showNotification;
+        }
         public void Update(GameTime gameTime)
         {
-            card0.Update(gameTime);
-            card1.Update(gameTime);
-            card2.Update(gameTime);
-            backgroundRectangle = new Rectangle(0, 0, 360, Game1.gameHeight);
-            topRectangle = new Rectangle(0, 0, 360, 90);
+            switch (InGameNotification.isVisible)
+            {
+                case false:
+                    card0.Update(gameTime);
+                    card1.Update(gameTime);
+                    card2.Update(gameTime);
+                    backgroundRectangle = new Rectangle(0, 0, 360, Game1.gameHeight);
+                    topRectangle = new Rectangle(0, 0, 360, 90);
 
+                    if ((card0.hasBeenClicked) && (money >= 20))
+                    {
+                        card0.hasBeenClicked = false;
+                        OnClick0();
+                    }
+                    if ((card1.hasBeenClicked) && (money >= 30))
+                    {
+                        card1.hasBeenClicked = false;
+                        OnClick1();
+                    }
+                    if ((card2.hasBeenClicked) && (money >= 40))
+                    {
+                        card2.hasBeenClicked = false;
+                        OnClick2();
+                    }
+                    break;
+                case true:
+                    InGameNotification.Update(gameTime);
+                    break;
+            }
+            
             _previousMouseState = _currentMouseState;
             _currentMouseState = Mouse.GetState();
-
-            if ((card0.hasBeenClicked) && (money >= 20))
-            {
-                card0.hasBeenClicked = false;
-                OnClick0();
-            }
-
-            if ((card1.hasBeenClicked) && (money >= 30))
-            {
-                card1.hasBeenClicked = false;
-                OnClick1();
-            }
-
-            if ((card2.hasBeenClicked) && (money >= 40))
-            {
-                card2.hasBeenClicked = false;
-                OnClick2();
-            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-  
             spriteBatch.Draw(backgound, backgroundRectangle, Color.White);
             card0.Draw(spriteBatch);
             card1.Draw(spriteBatch);
@@ -90,20 +102,33 @@ namespace BloodSim
             spriteBatch.Draw(topTexture, topRectangle, Color.White);
             spriteBatch.DrawString(fontBold, "Магазин", new Vector2(10, 4), Color.Black);
             spriteBatch.DrawString(fontRegular, "У вас: " + money + "R", new Vector2(12, 48), Color.Black);
+            InGameNotification.Draw(spriteBatch);
+
         }
         public void LoadContent(ContentManager Content)
         {
-            backgound = Content.Load<Texture2D>("background");
+            backgound = Content.Load<Texture2D>("Textures/UI/background");
             topTexture = Content.Load<Texture2D>("top");
             card0.LoadContent(Content);
             card1.LoadContent(Content);
             card2.LoadContent(Content);
+            InGameNotification.LoadContent(Content);
             #region Fonts
             fontRegular = Content.Load<SpriteFont>("regular");
             fontBold = Content.Load<SpriteFont>("bold");
             #endregion
             _currentMouseState = Mouse.GetState();
             _previousMouseState = _currentMouseState;
+        }
+        void closeNotification()
+        {
+            InGameNotification.isVisible = false;
+        }
+        void showNotification()
+        {
+            InGameNotification.Show("У вас недостаточно денег", Game1.gameWidth / 2 - 200, 
+                                    Game1.gameHeight / 2 - 65);     //  КОСТЫЛЬ
+            InGameNotification.isVisible = true;
         }
     }
 }

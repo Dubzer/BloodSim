@@ -30,7 +30,6 @@ namespace BloodSim.UI.PauseMenu
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(TestImage, new Vector2(0, 0), Color.White);
             spriteBatch.Draw(backgroundTexture, backgroundRectangle, backgroundColor);
             button0.Draw(spriteBatch);
             button1.Draw(spriteBatch);
@@ -38,10 +37,9 @@ namespace BloodSim.UI.PauseMenu
         }
         public void LoadContent(ContentManager Content)
         {
-            TestImage = Content.Load<Texture2D>("TestImage");
             button0.LoadContent(Content);
             button1.LoadContent(Content);
-            backgroundTexture = Content.Load<Texture2D>("background");
+            backgroundTexture = Content.Load<Texture2D>("Textures/UI/background");
             bold42 = Content.Load<SpriteFont>("bold42");
         }
         public void Update(GameTime gameTime)
