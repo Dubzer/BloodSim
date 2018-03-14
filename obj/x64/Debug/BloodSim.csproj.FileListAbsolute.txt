@@ -24,7 +24,6 @@ C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\music1.wma
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\music1.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\Penetration.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Fonts\bold.xnb
-C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Fonts\bold16.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Fonts\bold23.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Fonts\bold42.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Fonts\regular.xnb
@@ -70,3 +69,4 @@ C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\SharpDX.XInput.xml
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\SharpDX.Direct3D9.xml
 C:\Users\Admin\Documents\GitHub\BloodSim\obj\x64\Debug\BloodSim.exe
 C:\Users\Admin\Documents\GitHub\BloodSim\obj\x64\Debug\BloodSim.pdb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Fonts\bold14.xnb

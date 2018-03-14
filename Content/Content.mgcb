@@ -425,10 +425,10 @@
 /processorParam:TextureFormat=Color
 /build:Textures/UI/UIelement.png
 
-#begin Fonts/bold16.spritefont
+#begin Fonts/bold14.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/bold16.spritefont
+/build:Fonts/bold14.spritefont
 

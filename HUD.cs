@@ -17,13 +17,14 @@ namespace BloodSim
         private Texture2D uiElement;        //  Хз как это назвать
         private Vector2 uiElementPosition;
         private Rectangle uiElementRectangle;
-        private Color color;
+        private Color color, fontColor;
         public HUD()
         {
             // Oxygen
             oxygenBarTexture = null;
             oxygenBarCell = null;
             color = new Color(0, 0, 0, 100);
+            fontColor = new Color(255, 255, 255, 180);
             uiElementPosition = new Vector2(85, Game1.gameHeight - 65);
         }
 
@@ -31,7 +32,7 @@ namespace BloodSim
         {
             oxygenBarTexture = Content.Load<Texture2D>("Textures/hpBar");
             oxygenBarCell = Content.Load<Texture2D>("Textures/cell");
-            fontBold = Content.Load<SpriteFont>("Fonts/bold16");
+            fontBold = Content.Load<SpriteFont>("Fonts/bold14");
             uiElement = Content.Load<Texture2D>("Textures/UI/UIelement");
         }
 
@@ -41,7 +42,7 @@ namespace BloodSim
             spriteBatch.Draw(oxygenBarTexture, oxygenBarRectangle, Color.White);
             spriteBatch.Draw(oxygenBarCell, oxygenBarCellRectangle, Color.White);
             spriteBatch.Draw(uiElement, uiElementRectangle, color);
-            spriteBatch.DrawString(fontBold, Shop.money.ToString() + "R", new Vector2(108, Game1.gameHeight - 63), Color.White);
+            spriteBatch.DrawString(fontBold, Shop.money.ToString() + "R", new Vector2(112, Game1.gameHeight - 62), fontColor);
 
         }
 

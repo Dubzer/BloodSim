@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/kill.wav</SourceFile>
   <SourceTime>2018-03-14T19:11:34.9943644+03:00</SourceTime>
   <DestFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bin/Windows/Sounds/kill.xnb</DestFile>
-  <DestTime>2018-03-14T19:11:53.7850017+03:00</DestTime>
+  <DestTime>2018-03-14T22:20:47.0544636+03:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2017-03-01T18:05:36+03:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
