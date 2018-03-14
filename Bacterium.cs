@@ -131,7 +131,7 @@ namespace BloodSim
                     position.Y = 0;
                 }
 
-                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 10, Game1.gameWidth / 10);
+                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 15);
             }
             else
             {
