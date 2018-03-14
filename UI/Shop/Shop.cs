@@ -28,7 +28,7 @@ namespace BloodSim
         public static int money;
         MouseState _currentMouseState;
         MouseState _previousMouseState;
-        Card card0 = new Card(new Vector2(0, 100), "Textures/eritro", 20, "Эритроцит",
+        Card card0 = new Card(new Vector2(0, 100), "Textures/eritro", 90, 70, 20, "Эритроцит",
                                                                           "Эритроцит - клетка крови," +
                                                                           "\n" + "переносящая кислород " +
                                                                           "\n" + "по всему организму. Не " +

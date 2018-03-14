@@ -87,7 +87,7 @@ namespace BloodSim
                 Direction.Normalize();
                 position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 200;
 
-                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 10, Game1.gameWidth / 15);
+                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 20);
             }
             if (hp <= 0)
             {
