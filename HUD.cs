@@ -24,7 +24,7 @@ namespace BloodSim
             oxygenBarTexture = null;
             oxygenBarCell = null;
             color = new Color(0, 0, 0, 100);
-            fontColor = new Color(255, 255, 255, 180);
+            fontColor = new Color(230, 230, 230, 180);
             uiElementPosition = new Vector2(85, Game1.gameHeight - 65);
         }
 
