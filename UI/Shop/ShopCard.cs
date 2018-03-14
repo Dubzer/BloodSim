@@ -26,11 +26,31 @@ namespace BloodSim
         private SoundEffect clickSound,  errorSound;     // Звук клика
         private int cost;       // Стоимость предмета 
         public Action NotEnoughMoney;
+        private bool customRec = false;
         #region Управление мышью
         MouseState _currentMouseState;
         MouseState _previousMouseState;
         #endregion
         #endregion
+
+        public Card(Vector2 position, string texture, int itemWidth, int itemHeight, int cost, string name, string description)
+        {
+            costColor = Color.Black;
+            this.position = position;
+            this.itemRectangle.Width = itemWidth;
+            this.itemRectangle.Height = itemHeight;
+            this.item = texture;
+            this.name = name;
+            this.description = description;
+            this.cost = cost;
+
+            customRec = true;
+            #region Управление мышью
+            _currentMouseState = Mouse.GetState();
+            _previousMouseState = _currentMouseState;
+            #endregion 
+        }
+
         public Card(Vector2 position, string texture, int cost, string name, string description)              
         {
             costColor = Color.Black;
@@ -79,8 +99,6 @@ namespace BloodSim
             }
 
             #endregion
-            itemRectangle = new Rectangle(20, cardRectangle.Y + 48, 80, 80);        // Ректенгл предмета 
-            cardRectangle = new Rectangle(2, (int)position.Y, 355, 200);        // Ректенгл карты
             #region Поведение карточки
             if (cardRectangle.Intersects(Game1.cursorRectangle))
             {
@@ -120,6 +138,18 @@ namespace BloodSim
             fontBold = Content.Load<SpriteFont>("Fonts/bold");        //  Загрузка конента для шрита
             clickSound = Content.Load<SoundEffect>("clickSound");       //  Загрузка конента для звука клика
             errorSound = Content.Load<SoundEffect>("Sounds/error");     //  Звук ошибки
+
+            cardRectangle = new Rectangle(2, (int)position.Y, 355, 200);
+
+            if (!customRec)
+            {
+                itemRectangle = new Rectangle(20, cardRectangle.Y + 48, 80, 80);
+            }
+            else
+            {
+                itemRectangle.X = 20;
+                itemRectangle.Y = cardRectangle.Y + 48;
+            }
 
         }       //  Загрузка контента
     }
