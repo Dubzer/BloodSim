@@ -13,19 +13,26 @@ namespace BloodSim
         public Rectangle oxygenBarRectangle;
         public Texture2D oxygenBarCell;
         public Rectangle oxygenBarCellRectangle;
-        private SpriteFont fontRegular;
+        private SpriteFont fontBold;
+        private Texture2D uiElement;        //  Хз как это назвать
+        private Vector2 uiElementPosition;
+        private Rectangle uiElementRectangle;
+        private Color color;
         public HUD()
         {
             // Oxygen
             oxygenBarTexture = null;
             oxygenBarCell = null;
+            color = new Color(0, 0, 0, 100);
+            uiElementPosition = new Vector2(85, Game1.gameHeight - 65);
         }
 
         public void LoadContent(ContentManager Content)
         {
             oxygenBarTexture = Content.Load<Texture2D>("Textures/hpBar");
             oxygenBarCell = Content.Load<Texture2D>("Textures/cell");
-            fontRegular = Content.Load<SpriteFont>("Fonts/regular");
+            fontBold = Content.Load<SpriteFont>("Fonts/bold16");
+            uiElement = Content.Load<Texture2D>("Textures/UI/UIelement");
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -33,7 +40,9 @@ namespace BloodSim
             // Oxygen
             spriteBatch.Draw(oxygenBarTexture, oxygenBarRectangle, Color.White);
             spriteBatch.Draw(oxygenBarCell, oxygenBarCellRectangle, Color.White);
-            spriteBatch.DrawString(fontRegular, Shop.money.ToString(), new Vector2(25, Game1.gameHeight - 75), Color.White);
+            spriteBatch.Draw(uiElement, uiElementRectangle, color);
+            spriteBatch.DrawString(fontBold, Shop.money.ToString() + "R", new Vector2(108, Game1.gameHeight - 63), Color.White);
+
         }
 
         public void Update(GameTime gameTime, int hp)
@@ -44,7 +53,7 @@ namespace BloodSim
                 oxygenBarCellRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - Game1.gameHeight / 10, 400, Game1.gameHeight / 10);
                 spawned = true;
             }
-
+            uiElementRectangle = new Rectangle((int)uiElementPosition.X, (int)uiElementPosition.Y, 102, 32);
             // Oxygen
             oxygenBarRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - Game1.gameHeight / 10, hp, Game1.gameHeight / 10);
         }
