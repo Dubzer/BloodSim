@@ -123,8 +123,6 @@ namespace BloodSim
             SpawnEritro(1);
             SpawnLeiko(1);
             SpawnTrombo(1);
-            InGameNotification.Click += ChangeGuideText;
-            MainMenu.FirstStart += ShowGuide;
         }
 
         protected override void LoadContent()
@@ -563,26 +561,6 @@ namespace BloodSim
 
         #region GUIDE
         
-        public static void ShowGuide()
-        {
-            InGameNotification.Show(messages[currentMessage], true, gameWidth / 2 - 400, gameHeight / 2 - 65);
-            Debug.Print("Гайд вроде как должен был начаться");
-            Debug.Print("А игра поставиться на паузу");
-        }
-
-        private void ChangeGuideText()
-        {
-            currentMessage++;
-            Debug.Print("К куррент месаге прибавился 1. Сейчас он: " + currentMessage);
-            if (currentMessage > messages.Length)
-            {
-                InGameNotification.Hide();
-                Debug.Print("Спратял гайд");
-                isNeedGuide = false;
-                InGameNotification.Click -= ShowGuide;
-            }
-        }
-
         #endregion
     }
 }

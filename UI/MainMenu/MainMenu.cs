@@ -83,7 +83,6 @@ namespace BloodSim.UI.PauseMenu
         void Play()
         {
             Game1.gameState = Game1.State.Playing;
-            FirstStart();
         }
         void Exit()
         {

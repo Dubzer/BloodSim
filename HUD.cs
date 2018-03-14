@@ -13,7 +13,7 @@ namespace BloodSim
         public Rectangle oxygenBarRectangle;
         public Texture2D oxygenBarCell;
         public Rectangle oxygenBarCellRectangle;
-
+        private SpriteFont fontRegular;
         public HUD()
         {
             // Oxygen
@@ -21,10 +21,11 @@ namespace BloodSim
             oxygenBarCell = null;
         }
 
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager Content)
         {
-            oxygenBarTexture = content.Load<Texture2D>("Textures/hpBar");
-            oxygenBarCell = content.Load<Texture2D>("Textures/cell");
+            oxygenBarTexture = Content.Load<Texture2D>("Textures/hpBar");
+            oxygenBarCell = Content.Load<Texture2D>("Textures/cell");
+            fontRegular = Content.Load<SpriteFont>("Fonts/regular");
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -32,6 +33,7 @@ namespace BloodSim
             // Oxygen
             spriteBatch.Draw(oxygenBarTexture, oxygenBarRectangle, Color.White);
             spriteBatch.Draw(oxygenBarCell, oxygenBarCellRectangle, Color.White);
+            spriteBatch.DrawString(fontRegular, Shop.money.ToString(), new Vector2(25, Game1.gameHeight - 75), Color.White);
         }
 
         public void Update(GameTime gameTime, int hp)

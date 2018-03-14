@@ -173,3 +173,4 @@ C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Fonts\bol
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Fonts\bold23.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Fonts\bold42.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Fonts\regular.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.csprojResolveAssemblyReference.cache
