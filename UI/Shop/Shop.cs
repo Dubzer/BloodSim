@@ -53,7 +53,7 @@ namespace BloodSim
         private Rectangle backgroundRectangle;
         public Shop()
         {
-            InGameNotification.clicked += closeNotification;
+            InGameNotification.Click += closeNotification;
             card0.NotEnoughMoney += showNotification;
             card1.NotEnoughMoney += showNotification;
             card2.NotEnoughMoney += showNotification;
@@ -114,8 +114,8 @@ namespace BloodSim
             card2.LoadContent(Content);
             InGameNotification.LoadContent(Content);
             #region Fonts
-            fontRegular = Content.Load<SpriteFont>("regular");
-            fontBold = Content.Load<SpriteFont>("bold");
+            fontRegular = Content.Load<SpriteFont>("Fonts/regular");
+            fontBold = Content.Load<SpriteFont>("Fonts/bold");
             #endregion
             _currentMouseState = Mouse.GetState();
             _previousMouseState = _currentMouseState;
@@ -126,7 +126,7 @@ namespace BloodSim
         }
         void showNotification()
         {
-            InGameNotification.Show("У вас недостаточно денег", Game1.gameWidth / 2 - 200, 
+            InGameNotification.Show("У вас недостаточно денег",true, Game1.gameWidth / 2 - 400, 
                                     Game1.gameHeight / 2 - 65);     //  КОСТЫЛЬ
             InGameNotification.isVisible = true;
         }

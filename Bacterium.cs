@@ -14,7 +14,7 @@ namespace BloodSim
         public event Action OnPenetration;
         public bool hasPenetrated = false;
         public bool holeFound = false;
-
+        public static bool needNotification = true;
         public event Action OnDeath;
         bool dead = false;
 

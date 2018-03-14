@@ -60,9 +60,7 @@ C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\button.xn
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\buttonBlank.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\card.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\clickSound.xnb
-C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\closeButton.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\closeIcon.xnb
-C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\cursorLink.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\cursorNormal.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\item0.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\item1.xnb
@@ -93,7 +91,6 @@ C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\SharpDX.Direct3D1
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
-C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.csproj.CoreCompileInputs.cache
 C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.exe
 C:\Users\Admin\Documents\GitHub\BloodSim\obj\x86\Debug\BloodSim.pdb
@@ -172,3 +169,7 @@ D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\obj\x86\Debug\BloodSim.cspro
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\bold23.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Textures\UI\notification.xnb
 C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Textures\UI\background.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Fonts\bold.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Fonts\bold23.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Fonts\bold42.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\Windows\x86\Debug\Content\Fonts\regular.xnb

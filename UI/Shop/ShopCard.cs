@@ -116,8 +116,8 @@ namespace BloodSim
         {
             itemTexture = Content.Load<Texture2D>(item);        //  Загрузка контента для предмета
             cardTexture = Content.Load<Texture2D>("card");      //  Загрузка конента для карточки
-            fontRegular = Content.Load<SpriteFont>("regular");      //  Загрузка конента для шрифта
-            fontBold = Content.Load<SpriteFont>("bold");        //  Загрузка конента для шрита
+            fontRegular = Content.Load<SpriteFont>("Fonts/regular");      //  Загрузка конента для шрифта
+            fontBold = Content.Load<SpriteFont>("Fonts/bold");        //  Загрузка конента для шрита
             clickSound = Content.Load<SoundEffect>("clickSound");       //  Загрузка конента для звука клика
             errorSound = Content.Load<SoundEffect>("Sounds/error");     //  Звук ошибки
 

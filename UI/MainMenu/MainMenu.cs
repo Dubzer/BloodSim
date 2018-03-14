@@ -23,6 +23,7 @@ namespace BloodSim.UI.PauseMenu
         Color backgroundColor;
         Vector2 startPosition;
         string title;
+        public static Action FirstStart;
         #region Particles
 
         public Texture2D particlesTexture;
@@ -33,8 +34,8 @@ namespace BloodSim.UI.PauseMenu
         #endregion
         public MainMenu(string title)
         {
-            button1.clicked += Play;
-            button2.clicked += Exit;    
+            button1.OnClick += Play;
+            button2.OnClick += Exit;    
             this.title = title;
             backgroundColor = new Color(0, 0, 0, 0);
         }
@@ -53,7 +54,7 @@ namespace BloodSim.UI.PauseMenu
             button1.LoadContent(Content);
             button2.LoadContent(Content);
             backgroundTexture = Content.Load<Texture2D>("Textures/mainMenuBackground");
-            fontBold42 = Content.Load<SpriteFont>("bold42");
+            fontBold42 = Content.Load<SpriteFont>("Fonts/bold42");
             particlesTexture = Content.Load<Texture2D>("Textures/particles");
         }
         public void Update(GameTime gameTime)
@@ -82,6 +83,7 @@ namespace BloodSim.UI.PauseMenu
         void Play()
         {
             Game1.gameState = Game1.State.Playing;
+            FirstStart();
         }
         void Exit()
         {

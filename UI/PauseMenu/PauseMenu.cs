@@ -23,8 +23,8 @@ namespace BloodSim.UI.PauseMenu
         #endregion
         public PauseMenu(string title)
         {
-            button0.clicked += Play;
-            button1.clicked += MainMenu;
+            button0.OnClick += Play;
+            button1.OnClick += MainMenu;
             this.title = title;
             backgroundColor = new Color(10, 10, 10, 255);
         }
@@ -40,7 +40,7 @@ namespace BloodSim.UI.PauseMenu
             button0.LoadContent(Content);
             button1.LoadContent(Content);
             backgroundTexture = Content.Load<Texture2D>("Textures/UI/background");
-            bold42 = Content.Load<SpriteFont>("bold42");
+            bold42 = Content.Load<SpriteFont>("Fonts/bold42");
         }
         public void Update(GameTime gameTime)
         {

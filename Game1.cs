@@ -16,15 +16,12 @@ using BloodSim.UI.Notification;
 
 namespace BloodSim
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class Game1 : Game
     {
-        public enum State
+        public enum State       //  State of the game
         {
             Playing,
-            Pause,
+            PauseMenu,
             Shop,
             MainMenu,
             Victory,
@@ -42,6 +39,7 @@ namespace BloodSim
         static public List<Trombo> tromboList = new List<Trombo>();
         static public List<Wall> wallList = new List<Wall>();
 
+
         //static public Spawner spawner = new Spawner();
         int spawnTimer = 0;
 
@@ -58,17 +56,20 @@ namespace BloodSim
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
         Button closeShopButton = new Button("closeIcon", new Vector2(gameWidth - 75, 25));
         Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
-        public static int gameWidth = 1280;
-        public static int gameHeight = 720;
+        public static int gameWidth = 1280;     //  Тут задается ширина игры
+        public static int gameHeight = 720;     //  Тут задается высота игры
         public Cursor cursor = new Cursor(); // Курсор
         MainMenu mainMenu = new MainMenu("");
-
+        static public bool isGamePaused;
         public static Rectangle cursorRectangle;
         public static string cursorTexture;
-
         #endregion
-		
-		#region Стандартный контент
+        #region Guide
+        public static bool isNeedGuide = true;
+        private static string[] messages = { "Message1", "Message2", "Message3" };     //  Массив с текстом сообщений
+        private static int currentMessage;
+        #endregion
+        #region Стандартный контент
         Texture2D eritroTexture;
         Texture2D tromboTexture;
         Texture2D leikoTexture;
@@ -81,30 +82,27 @@ namespace BloodSim
 
         SoundEffect penetration;
         Song music;
-
         bool musicPlayed = false;
 
         public static State gameState = State.MainMenu;
         public Game1()
         {
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            //graphics.ToggleFullScreen();
-            #region 
-            graphics.PreferredBackBufferWidth = gameWidth;
+            graphics.PreferredBackBufferWidth = gameWidth;      
             graphics.PreferredBackBufferHeight = gameHeight;
-            Debug.Print("инициалировано");
+            //graphics.ToggleFullScreen();
+            #region UI
+
             cursorTexture = "cursorNormal";
             shopButton.clicked += OpenShopMenu;
             closeShopButton.clicked += CloseShopMenu;
             pauseButton.clicked += OpenPauseMenu;
-
             shop.OnClick0 += BuyEritro;
             shop.OnClick1 += BuyLeiko;
             shop.OnClick2 += BuyTrombo;
+
             #endregion
 
             for (int i = 0; i < gameHeight / 200; i++)
@@ -115,6 +113,7 @@ namespace BloodSim
             {
                 wallList.Add(new Wall());
             }
+
         }
 
         protected override void Initialize()
@@ -124,6 +123,8 @@ namespace BloodSim
             SpawnEritro(1);
             SpawnLeiko(1);
             SpawnTrombo(1);
+            InGameNotification.Click += ChangeGuideText;
+            MainMenu.FirstStart += ShowGuide;
         }
 
         protected override void LoadContent()
@@ -154,6 +155,9 @@ namespace BloodSim
             penetration = Content.Load<SoundEffect>("Sounds/Penetration");
 
             hud.LoadContent(Content);
+
+            InGameNotification.LoadContent(Content);        //  Внутриигровые уведомления (например недостаточно денег)
+
         }
 
         protected override void UnloadContent()
@@ -167,105 +171,124 @@ namespace BloodSim
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.End))
                 Shop.money += 10;
-            switch (gameState)
+            switch(isGamePaused)
             {
-                case State.Pause:
-                    pauseMenu.Update(gameTime);
-                    MediaPlayer.Pause();
-                    musicPlayed = false;
+                case false:     //  Если игра не на паузе, то...
+
+                    switch (gameState)
+                    {
+                        case State.PauseMenu:
+                            pauseMenu.Update(gameTime);
+                            MediaPlayer.Pause();
+                            musicPlayed = false;
+                            break;
+                        case State.Playing:
+                            pauseButton.Update(gameTime);
+                            shopButton.Update(gameTime);
+                            #region Обновление игровых объектов
+                            for (int i = 0; i < eritroList.Count; i++)
+                            {
+                                eritroList[i].Update(gameTime, new Rectangle(100, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + eritroList[i].boundingBox.Height /*- eritroList[i].boundingBox.Height*/, 2, 2), wallList);
+                            }
+
+                            for (int i = 0; i < bacteriumList.Count; i++)
+                            {
+                                bacteriumList[i].Update(gameTime, cellList, wallList);
+                            }
+
+                            for (int i = 0; i < leikoList.Count; i++)
+                            {
+                                leikoList[i].Update(gameTime, bacteriumList, wallList);
+                            }
+
+                            for (int i = 0; i < tromboList.Count; i++)
+                            {
+                                tromboList[i].Update(gameTime, wallList);
+                            }
+
+                            for (int i = 0; i < wallList.Count; i++)
+                            {
+                                wallList[i].Update(gameTime);
+                            }
+
+                            if (musicPlayed == false)
+                            {
+                                MediaPlayer.Play(music);
+                                MediaPlayer.Volume = .5f;
+
+                                musicPlayed = true;
+                            }
+
+                            Shop.money = oxygenPoints;
+
+                            hud.Update(gameTime, oxygenPoints);
+                            background.Update(gameTime);
+
+                            /*if (oxygenPoints == hud.oxygenBarRectangle.Width)
+                            {
+                                gameState = State.Victory;
+                            }*/
+
+                            if ((oxygenPoints < 100) && (eritroList.Count == 0))
+                            {
+                                gameState = State.Defeat;
+                            }
+                            #endregion
+
+                            #region Очистка от уничтоженных объектов
+                            ClearAll();
+                            #endregion
+
+                            #region Создание бактерий
+                            spawnTimer++;
+                            if (spawnTimer == 1000)
+                            {
+                                Debug.Print("Бактерия заспавнилась успешно!");
+                                #region Training. Notification appears once. 
+
+                                if (Bacterium.needNotification)
+                                {
+                                    InGameNotification.Show("Внимание! Появилась бактерия!", true, gameWidth / 2 - 400, gameHeight / 2 - 65);
+                                    
+                                    Bacterium.needNotification = !Bacterium.needNotification;
+                                }
+                                #endregion
+                                SpawnBacterium(random.Next(0, 2));
+                                spawnTimer = 0;
+
+                                SoundEffect.MasterVolume = 0.5f;
+                                penetration.Play();
+
+                                wallList[random.Next(2, wallList.Count)].hp = 0;
+                            }
+                            #endregion
+                            break;
+                        case State.Shop:
+                            closeShopButton.Update(gameTime);
+                            shop.Update(gameTime);
+                            break;
+                        case State.MainMenu:
+                            mainMenu.Update(gameTime);
+                            break;
+                        case State.Victory:
+                            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                            {
+                                MediaPlayer.Stop();
+                                gameState = State.MainMenu;
+                            }
+                            break;
+                        case State.Defeat:
+                            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                            {
+                                MediaPlayer.Stop();
+                                gameState = State.MainMenu;
+                            }
+                            break;
+            }
+
                     break;
-                case State.Playing:
-                    pauseButton.Update(gameTime);
-                    shopButton.Update(gameTime);
-                    #region Обновление игровых объектов
-                    for (int i = 0; i < eritroList.Count; i++)
-                    {
-                        eritroList[i].Update(gameTime, new Rectangle(100, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + eritroList[i].boundingBox.Height /*- eritroList[i].boundingBox.Height*/, 2, 2), wallList);
-                    }
-
-                    for (int i = 0; i < bacteriumList.Count; i++)
-                    {
-                        bacteriumList[i].Update(gameTime, cellList, wallList);
-                    }
-
-                    for (int i = 0; i < leikoList.Count; i++)
-                    {
-                        leikoList[i].Update(gameTime, bacteriumList, wallList);
-                    }
-
-                    for (int i = 0; i < tromboList.Count; i++)
-                    {
-                        tromboList[i].Update(gameTime, wallList);
-                    }
-
-                    for (int i = 0; i < wallList.Count; i++)
-                    {
-                        wallList[i].Update(gameTime);
-                    }
-
-                    if (musicPlayed == false)
-                    {
-                        MediaPlayer.Play(music);
-                        MediaPlayer.Volume = .5f;
-
-                        musicPlayed = true;
-                    }
-
-                    Shop.money = oxygenPoints;
-
-                    hud.Update(gameTime, oxygenPoints);
-                    background.Update(gameTime);
-
-                    /*if (oxygenPoints == hud.oxygenBarRectangle.Width)
-                    {
-                        gameState = State.Victory;
-                    }*/
-
-                    if ((oxygenPoints < 100) && (eritroList.Count == 0))
-                    {
-                        gameState = State.Defeat;
-                    }
-                    #endregion
-
-                    #region Очистка от уничтоженных объектов
-                    ClearAll();
-                    #endregion
-
-                    #region Создание бактерий
-                    spawnTimer++;
-                    if (spawnTimer == 1000)
-                    {
-                        SpawnBacterium(random.Next(0, 2));
-                        spawnTimer = 0;
-
-                        SoundEffect.MasterVolume = 0.5f;
-                        penetration.Play();
-
-                        wallList[random.Next(2, wallList.Count)].hp = 0;
-                    }
-                    #endregion
-
-                    break;
-                case State.Shop:
-                    closeShopButton.Update(gameTime);
-                    shop.Update(gameTime);
-                    break;
-                case State.MainMenu:
-                    mainMenu.Update(gameTime);
-                    break;
-                case State.Victory:
-                    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    {
-                        MediaPlayer.Stop();
-                        gameState = State.MainMenu;
-                    }
-                    break;
-                case State.Defeat:
-                    if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    {
-                        MediaPlayer.Stop();
-                        gameState = State.MainMenu;
-                    }
+                case true:      //  Если игра на паузе, то..
+                    InGameNotification.Update(gameTime);
                     break;
 
             }
@@ -283,9 +306,10 @@ namespace BloodSim
             GraphicsDevice.Clear(new Color(123, 17, 17));
             spriteBatch.Begin();
             {
+
                 switch (gameState)
                 {
-                    case State.Pause:
+                    case State.PauseMenu:
                         background.Draw(spriteBatch);
                         for (int i = 0; i < cellList.Count; i++)
                         {
@@ -374,6 +398,7 @@ namespace BloodSim
                         break;
 
                 }
+                InGameNotification.Draw(spriteBatch);       //  Отрисовка уведомлений
                 cursor.Draw(spriteBatch); // Отрисовка курсора 
             }
             spriteBatch.End();
@@ -527,11 +552,35 @@ namespace BloodSim
         }
         void OpenPauseMenu()
         {
-            gameState = State.Pause;
+            gameState = State.PauseMenu;
         }
         void ClosePauseMenu()
         {
             gameState = State.Playing;
+        }
+
+        #endregion
+
+        #region GUIDE
+        
+        public static void ShowGuide()
+        {
+            InGameNotification.Show(messages[currentMessage], true, gameWidth / 2 - 400, gameHeight / 2 - 65);
+            Debug.Print("Гайд вроде как должен был начаться");
+            Debug.Print("А игра поставиться на паузу");
+        }
+
+        private void ChangeGuideText()
+        {
+            currentMessage++;
+            Debug.Print("К куррент месаге прибавился 1. Сейчас он: " + currentMessage);
+            if (currentMessage > messages.Length)
+            {
+                InGameNotification.Hide();
+                Debug.Print("Спратял гайд");
+                isNeedGuide = false;
+                InGameNotification.Click -= ShowGuide;
+            }
         }
 
         #endregion

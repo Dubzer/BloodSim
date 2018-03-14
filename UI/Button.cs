@@ -9,13 +9,6 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace BloodSim
 {
-    enum Type
-    {
-        Simple,
-        Floating,
-        Expanded,
-        Card
-    }
     class Button
     {
         Texture2D texture;
@@ -28,7 +21,6 @@ namespace BloodSim
         Vector2 position;
         Color color;
         private SoundEffect clickSound;     // Звук клика
-        private Type type = Type.Simple;
 
         public Button(string icon, Vector2 position)
         {

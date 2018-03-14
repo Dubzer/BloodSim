@@ -13,6 +13,8 @@ namespace BloodSim
         public Rectangle currentTarget;
         public Random random;
 
+        public static bool needNotification = true;
+
         public SoundEffect death_soundEffect;
         bool dead = false;
 

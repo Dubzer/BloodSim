@@ -21,7 +21,6 @@ namespace BloodSim.UI.PauseMenu
         private Color color, defaultColor, selectedColor;        // Цвет карточки
         private SpriteFont fontRegular;       // Шрифты
         private SoundEffect clickSound;     // Звук клика
-        private bool isExpanded;
         public Action clicked;
         #region Управление мышью
         MouseState _currentMouseState;
@@ -77,7 +76,7 @@ namespace BloodSim.UI.PauseMenu
         }
         public void LoadContent(ContentManager Content)
         {
-            fontRegular = Content.Load<SpriteFont>("regular");        //  Загрузка конента для шрита
+            fontRegular = Content.Load<SpriteFont>("Fonts/regular");        //  Загрузка конента для шрита
             rectangle = new Rectangle((int)x, (int)y, 190, 40);        // Ректенгл карты
 
             x = 0;

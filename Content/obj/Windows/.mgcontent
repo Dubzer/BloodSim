@@ -19,8 +19,6 @@
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/bite.wav</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/item1.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/pauseIcon.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/robotoBold.spritefont</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/robotoBold42.spritefont</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/shopIcon.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/TestImage.jpg</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/top.png</File>
@@ -29,22 +27,20 @@
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/buttonBlank.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/card.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/clickSound.wav</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/closeButton.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/closeIcon.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/cursorLink.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/cursorNormal.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/item0.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/regular.spritefont</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bold42.spritefont</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bold.spritefont</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/eritro.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/Penetration.wav</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/mainMenuBackground.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/error.wav</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/wall.png</File>
-    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bold23.spritefont</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/UI/notification.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/UI/background.png</File>
     <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/background.png</File>
+    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Fonts/regular.spritefont</File>
+    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Fonts/bold.spritefont</File>
+    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Fonts/bold23.spritefont</File>
+    <File>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Fonts/bold42.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

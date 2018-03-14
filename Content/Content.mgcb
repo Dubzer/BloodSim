@@ -175,20 +175,6 @@
 /processorParam:TextureFormat=Color
 /build:pauseIcon.png
 
-#begin robotoBold.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:robotoBold.spritefont
-
-#begin robotoBold42.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:robotoBold42.spritefont
-
 #begin shopIcon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -279,18 +265,6 @@
 /processorParam:Quality=Best
 /build:clickSound.wav
 
-#begin closeButton.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:closeButton.png
-
 #begin closeIcon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -326,27 +300,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:item0.png
-
-#begin regular.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:regular.spritefont
-
-#begin bold42.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:bold42.spritefont
-
-#begin bold.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:bold.spritefont
 
 #begin Textures/eritro.png
 /importer:TextureImporter
@@ -396,13 +349,6 @@
 /processorParam:TextureFormat=Color
 /build:Textures/wall.png
 
-#begin bold23.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:bold23.spritefont
-
 #begin Textures/UI/notification.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -438,4 +384,32 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Textures/background.png
+
+#begin Fonts/regular.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/regular.spritefont
+
+#begin Fonts/bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bold.spritefont
+
+#begin Fonts/bold23.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bold23.spritefont
+
+#begin Fonts/bold42.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Fonts/bold42.spritefont
 
