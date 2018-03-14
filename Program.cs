@@ -2,7 +2,6 @@
 
 namespace BloodSim
 {
-#if WINDOWS || LINUX
     /// <summary>
     /// The main class.
     /// </summary>
@@ -19,5 +18,4 @@ namespace BloodSim
                 game.Run();
         }
     }
-#endif
 }
