@@ -1,4 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿#region File Description
+//-----------------------------------------------------------------------------
+// HUD.cs
+//
+// Created by Judex Mars & Dubzer 
+//-----------------------------------------------------------------------------
+#endregion
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
@@ -13,7 +20,8 @@ namespace BloodSim
         public Rectangle oxygenBarRectangle;
         public Texture2D oxygenBarCell;
         public Rectangle oxygenBarCellRectangle;
-        private SpriteFont fontBold;
+        private Color oxygenBarColor, oxygenBarCellColor;
+        private SpriteFont fontBold, fontBold23;
         private Texture2D uiElement;        //  Хз как это назвать
         private Vector2 uiElementPosition;
         private Rectangle uiElementRectangle;
@@ -25,24 +33,28 @@ namespace BloodSim
             oxygenBarCell = null;
             color = new Color(0, 0, 0, 100);
             fontColor = new Color(230, 230, 230, 180);
+            oxygenBarColor = new Color(255, 255, 255, 180);
+            oxygenBarCellColor = new Color(0, 0, 0, 200);
             uiElementPosition = new Vector2(85, Game1.gameHeight - 65);
         }
 
         public void LoadContent(ContentManager Content)
         {
-            oxygenBarTexture = Content.Load<Texture2D>("Textures/hpBar");
-            oxygenBarCell = Content.Load<Texture2D>("Textures/cell");
+            oxygenBarTexture = Content.Load<Texture2D>("Textures/UI/background" /*"Textures/hpBar"*/);
+            oxygenBarCell = Content.Load<Texture2D>("Textures/UI/background" /*"Textures/cell"*/);
             fontBold = Content.Load<SpriteFont>("Fonts/bold14");
+            fontBold23 = Content.Load<SpriteFont>("Fonts/bold23");
             uiElement = Content.Load<Texture2D>("Textures/UI/UIelement");
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             // Oxygen
-            spriteBatch.Draw(oxygenBarTexture, oxygenBarRectangle, Color.White);
-            spriteBatch.Draw(oxygenBarCell, oxygenBarCellRectangle, Color.White);
+            spriteBatch.Draw(oxygenBarCell, oxygenBarCellRectangle, oxygenBarCellColor);
+            spriteBatch.Draw(oxygenBarTexture, oxygenBarRectangle, oxygenBarColor);
             spriteBatch.Draw(uiElement, uiElementRectangle, color);
             spriteBatch.DrawString(fontBold, Shop.money.ToString() + "R", new Vector2(112, Game1.gameHeight - 62), fontColor);
+            spriteBatch.DrawString(fontBold23, "Кислород", new Vector2(oxygenBarCellRectangle.X + oxygenBarCellRectangle.Width / 2 - (fontBold23.MeasureString("Кислород").X / 2), oxygenBarCellRectangle.Y - fontBold23.MeasureString("Кислород").Y), fontColor);
 
         }
 
@@ -50,13 +62,13 @@ namespace BloodSim
         {
             if (!spawned)
             {
-                oxygenBarRectangle = new Rectangle(Game1.gameWidth / 2, Game1.gameHeight - Game1.gameHeight / 10, 0, Game1.gameHeight / 10);
-                oxygenBarCellRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - Game1.gameHeight / 10, 400, Game1.gameHeight / 10);
+                oxygenBarRectangle = new Rectangle(Game1.gameWidth / 2, Game1.gameHeight - oxygenBarRectangle.Height - 25, 0, 25);
+                oxygenBarCellRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - oxygenBarRectangle.Height - 25, 400, 25);
                 spawned = true;
             }
             uiElementRectangle = new Rectangle((int)uiElementPosition.X, (int)uiElementPosition.Y, 102, 32);
             // Oxygen
-            oxygenBarRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - Game1.gameHeight / 10, hp, Game1.gameHeight / 10);
+            oxygenBarRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - oxygenBarRectangle.Height - 25, hp, 25);
         }
     }
 }

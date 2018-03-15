@@ -212,7 +212,7 @@ namespace BloodSim
                             if (musicPlayed == false)
                             {
                                 MediaPlayer.Play(music);
-                                MediaPlayer.Volume = .5f;
+                                MediaPlayer.Volume = .05f;
 
                                 musicPlayed = true;
                             }
