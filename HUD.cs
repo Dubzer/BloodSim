@@ -22,7 +22,7 @@ namespace BloodSim
         public Rectangle oxygenBarCellRectangle;
         private Color oxygenBarColor, oxygenBarCellColor;
         private SpriteFont fontBold, fontBold23;
-        private Texture2D uiElement;        //  Хз как это назвать
+        private Texture2D uiElement;        //  Хз как это назвать, но назвать нужно.
         private Vector2 uiElementPosition;
         private Rectangle uiElementRectangle;
         private Color color, fontColor;

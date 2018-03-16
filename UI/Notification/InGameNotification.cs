@@ -65,6 +65,7 @@ namespace BloodSim.UI.Notification
             #region При нажатии на кнопку
             if (_previousMouseState.LeftButton == ButtonState.Released && _currentMouseState.LeftButton == ButtonState.Pressed && rectangle.Intersects(Game1.cursorRectangle))
             {
+                Hide(); // Не знаю, есть ли последствия от этой легкомысленной команды, но в данный момент она работает так, как мне нужно — Judex Mars
             }
             #endregion
             #region При наведении на кнопку

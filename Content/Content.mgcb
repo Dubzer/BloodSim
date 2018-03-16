@@ -432,3 +432,21 @@
 /processorParam:TextureFormat=Color
 /build:Textures/background.png
 
+#begin Sounds/deathTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/deathTheme.mp3
+
+#begin Sounds/victoryTheme.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/victoryTheme.mp3
+
+#begin Sounds/mainMenuMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/mainMenuMusic.mp3
+

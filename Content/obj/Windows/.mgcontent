@@ -44,5 +44,8 @@
     <File>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Textures/UI/UIelement.png</File>
     <File>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Fonts/bold14.spritefont</File>
     <File>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Textures/background.png</File>
+    <File>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Sounds/deathTheme.mp3</File>
+    <File>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Sounds/victoryTheme.mp3</File>
+    <File>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Sounds/mainMenuMusic.mp3</File>
   </SourceFiles>
 </SourceFileCollection>

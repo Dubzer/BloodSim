@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
 
 #endregion
@@ -24,6 +25,10 @@ namespace BloodSim.UI.PauseMenu
         Vector2 startPosition;
         string title;
         public static Action FirstStart;
+
+        Song theme;
+        public static bool isMusicPlayed = false;
+
         #region Particles
 
         public Texture2D particlesTexture;
@@ -56,6 +61,7 @@ namespace BloodSim.UI.PauseMenu
             backgroundTexture = Content.Load<Texture2D>("Textures/mainMenuBackground");
             fontBold42 = Content.Load<SpriteFont>("Fonts/bold42");
             particlesTexture = Content.Load<Texture2D>("Textures/particles");
+            theme = Content.Load<Song>("Sounds/mainMenuMusic");
         }
         public void Update(GameTime gameTime)
         {
@@ -63,6 +69,13 @@ namespace BloodSim.UI.PauseMenu
             button1.Update(gameTime);
             button2.Update(gameTime);
             startPosition = new Vector2(Game1.gameWidth / 2 - fontBold42.MeasureString(title).Length() / 2, Game1.gameHeight / 4);
+
+            if (isMusicPlayed == false)
+            {
+                MediaPlayer.Volume = .1f;
+                MediaPlayer.Play(theme);
+                isMusicPlayed = true;
+            }
             #region Particles
             particleRectangle.Y += 1;
             particleRectangle2.Y += 1;
@@ -83,6 +96,9 @@ namespace BloodSim.UI.PauseMenu
         void Play()
         {
             Game1.gameState = Game1.State.Playing;
+
+            MediaPlayer.Stop();
+            
         }
         void Exit()
         {

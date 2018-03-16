@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using BloodSim.UI.PauseMenu;
+using BloodSim.UI.EndMenu;
 using Shop;
 using System.Diagnostics;
 using BloodSim.UI.Notification;
@@ -43,7 +44,7 @@ namespace BloodSim
         //static public Spawner spawner = new Spawner();
         int spawnTimer = 0;
 
-        HUD hud = new HUD();
+        static HUD hud = new HUD();
 
         static public int oxygenPoints;
 
@@ -60,6 +61,9 @@ namespace BloodSim
         public static int gameHeight = 720;     //  Тут задается высота игры
         public Cursor cursor = new Cursor(); // Курсор
         MainMenu mainMenu = new MainMenu("");
+
+        EndMenu endMenu = new EndMenu();
+
         static public bool isGamePaused;
         public static Rectangle cursorRectangle;
         public static string cursorTexture;
@@ -151,6 +155,8 @@ namespace BloodSim
             background.LoadContent(Content);
             music = Content.Load<Song>("Sounds/music1");
             penetration = Content.Load<SoundEffect>("Sounds/Penetration");
+
+            endMenu.LoadContent(Content);
 
             hud.LoadContent(Content);
 
@@ -269,18 +275,10 @@ namespace BloodSim
                             mainMenu.Update(gameTime);
                             break;
                         case State.Victory:
-                            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                            {
-                                MediaPlayer.Stop();
-                                gameState = State.MainMenu;
-                            }
+                            endMenu.Update(gameTime, "      Ваш организм выжил и смог \n    накопить достаточно кислорода \n        для завершения игры.", 1);
                             break;
                         case State.Defeat:
-                            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                            {
-                                MediaPlayer.Stop();
-                                gameState = State.MainMenu;
-                            }
+                            endMenu.Update(gameTime, "   Вы не справились с заданием. \n       Ваш организм погиб.", 0);
                             break;
             }
 
@@ -394,7 +392,12 @@ namespace BloodSim
                     case State.MainMenu:
                         mainMenu.Draw(spriteBatch);
                         break;
-
+                    case State.Defeat:
+                        endMenu.Draw(spriteBatch);
+                        break;
+                    case State.Victory:
+                        endMenu.Draw(spriteBatch);
+                        break;
                 }
                 InGameNotification.Draw(spriteBatch);       //  Отрисовка уведомлений
                 cursor.Draw(spriteBatch); // Отрисовка курсора 
@@ -462,7 +465,7 @@ namespace BloodSim
             }
         }
 
-        protected void ClearAll() // Очистка списков с уже уничтоженными клетками для уменьшения нагрузки
+        public static void ClearAll() // Очистка списков с уже уничтоженными клетками для уменьшения нагрузки
         {
             for (int i = 0; i < bacteriumList.Count; i++)
             {
@@ -490,9 +493,10 @@ namespace BloodSim
                     i--;
                 }
             }
+
         }
 
-        protected void RestartProgress() // Вернуть состояния всех объектов на исходные значения
+        public static void RestartProgress() // Вернуть состояния всех объектов на исходные значения
         {
             for (int i = 0; i < bacteriumList.Count; i++)
             {
@@ -500,7 +504,7 @@ namespace BloodSim
                 i--;
             }
 
-            for (int i = 1; i < eritroList.Count; i++) // Ведём счёт с единицы, чтобы, как минимум, один эритроцит продолжил своё мирное существование
+            for (int i = 0; i < eritroList.Count; i++) 
             {
                 eritroList.RemoveAt(i);
                 i--;

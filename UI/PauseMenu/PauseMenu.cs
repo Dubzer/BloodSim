@@ -24,7 +24,7 @@ namespace BloodSim.UI.PauseMenu
         public PauseMenu(string title)
         {
             button0.OnClick += Play;
-            button1.OnClick += MainMenu;
+            button1.OnClick += ToMainMenu;
             this.title = title;
             backgroundColor = new Color(10, 10, 10, 255);
         }
@@ -54,9 +54,10 @@ namespace BloodSim.UI.PauseMenu
         {
             Game1.gameState = Game1.State.Playing;
         }
-        void MainMenu()
+        void ToMainMenu()
         {
             Game1.gameState = Game1.State.MainMenu;
+            MainMenu.isMusicPlayed = false;
         }
     }
 }
