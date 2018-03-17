@@ -149,3 +149,10 @@ D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\bin\x64\Debug\Content\Sounds
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\bin\x64\Debug\Content\Sounds\victoryTheme.xnb
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\bin\x64\Debug\Content\Sounds\mainMenuMusic.wma
 D:\Programms\Ares_Projects\BloodSim_GitHub\BloodSim\bin\x64\Debug\Content\Sounds\mainMenuMusic.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\deathTheme.wma
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\deathTheme.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\mainMenuMusic.wma
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\mainMenuMusic.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\victoryTheme.wma
+C:\Users\Admin\Documents\GitHub\BloodSim\bin\x64\Debug\Content\Sounds\victoryTheme.xnb
+C:\Users\Admin\Documents\GitHub\BloodSim\obj\x64\Debug\BloodSim.csproj.CopyComplete

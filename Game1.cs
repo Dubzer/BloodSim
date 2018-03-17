@@ -70,7 +70,6 @@ namespace BloodSim
         #endregion
         #region Guide
         public static bool isNeedGuide = true;
-        private static string[] messages = { "Message1", "Message2", "Message3" };     //  Массив с текстом сообщений
         private static int currentMessage;
         #endregion
         #region Стандартный контент
@@ -175,6 +174,9 @@ namespace BloodSim
                 Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.End))
                 Shop.money += 10;
+
+            Debug.Print(gameState.ToString());
+
             switch(isGamePaused)
             {
                 case false:     //  Если игра не на паузе, то...
@@ -187,8 +189,11 @@ namespace BloodSim
                             musicPlayed = false;
                             break;
                         case State.Playing:
+                            #region HUD
                             pauseButton.Update(gameTime);
                             shopButton.Update(gameTime);
+                            hud.Update(gameTime, oxygenPoints);
+                            #endregion
                             #region Обновление игровых объектов
                             for (int i = 0; i < eritroList.Count; i++)
                             {
@@ -225,7 +230,6 @@ namespace BloodSim
 
                             Shop.money = oxygenPoints;
 
-                            hud.Update(gameTime, oxygenPoints);
                             background.Update(gameTime);
 
                             /*if (oxygenPoints == hud.oxygenBarRectangle.Width)
@@ -302,7 +306,7 @@ namespace BloodSim
             GraphicsDevice.Clear(new Color(123, 17, 17));
             spriteBatch.Begin();
             {
-
+                
                 switch (gameState)
                 {
                     case State.PauseMenu:
