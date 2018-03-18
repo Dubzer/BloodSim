@@ -14,6 +14,7 @@ namespace BloodSim
     public class Trombo : Cell
     {
         public Rectangle currentTarget;
+        public Rectangle homeTarget;
         public Random random;
 
         public SoundEffect death_soundEffect;
@@ -26,8 +27,10 @@ namespace BloodSim
             texture = null;
             this.random = random;
 
-            position = new Vector2(random.Next(0, Game1.gameWidth / 4), 500);
-            currentTarget = new Rectangle(random.Next(0, Game1.gameWidth / 4), Game1.gameHeight + 200, 2, 2);
+            position = new Vector2(random.Next(0, Game1.gameWidth / 4), -100);
+            currentTarget = new Rectangle(random.Next(0, Game1.gameWidth / 4), random.Next(0, Game1.gameHeight - 50), 2, 2);
+            homeTarget = currentTarget;
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 15);
 
             OnDeath += Die;
         }
@@ -54,21 +57,22 @@ namespace BloodSim
                 {
                     if (boundingBox.Intersects(wallList[i].boundingBox) && (wallList[i].hp < 100))
                     {
-                        wallList[i].hp = 100;
                         hp = 0;
+                        wallList[i].hp = 100;
+
                     }
 
-                    Vector2 dis = new Vector2(wallList[i].position.X, wallList[i].position.Y) - position;
+                    Vector2 dis = new Vector2(wallList[i].position.X + 50, wallList[i].position.Y + 50) - position;
                     float length = (float)Math.Sqrt(dis.X + dis.Y);
 
                     if ((length < 5000) && (wallList[i].hp < 100))
                     {
-                        currentTarget = new Rectangle((int)wallList[i].position.X + wallList[i].boundingBox.Width / 2, (int)wallList[i].position.Y + wallList[i].boundingBox.Height / 2, 3, 3);
+                        currentTarget = new Rectangle((int)wallList[i].position.X + wallList[i].boundingBox.Width, (int)wallList[i].position.Y + wallList[i].boundingBox.Height / 2, 3, 3);
                         break;
                     }
                     else
                     {
-                        currentTarget = new Rectangle(100, 300, 2, 2);
+                        currentTarget = homeTarget;
                         continue;
                     }
 
@@ -102,7 +106,7 @@ namespace BloodSim
                     position += Direction * (float)gameTime.ElapsedGameTime.TotalSeconds * 400;
                 }
 
-                boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 15);
+               boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 15);
             }
             else
             {

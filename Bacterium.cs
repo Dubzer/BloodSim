@@ -63,7 +63,7 @@ namespace BloodSim
 
                             if ((length < 5000) && (cell.position.Y < Game1.gameHeight) && (cell.position.Y > 0) && (cell.hp > 0))
                             {
-                                currentTarget = cell.boundingBox;
+                                currentTarget = new Rectangle(cell.boundingBox.X, cell.boundingBox.Y, 2, 2);
                             }
                             else
                             {

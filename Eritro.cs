@@ -10,6 +10,8 @@ namespace BloodSim
 {
     public class Eritro : Cell
     {
+        private bool oppression = false;
+
         public Rectangle currentTarget;
         public Random random;
         public bool oxygenMining = true;
@@ -25,6 +27,7 @@ namespace BloodSim
             this.random = random;
             currentTarget = new Rectangle(100, Game1.gameWidth + 100, 2, 2);
             position = new Vector2(random.Next(0, Game1.gameWidth / 4), -100);
+            boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 20);
 
             OnDeath += Die;
         }
@@ -75,7 +78,7 @@ namespace BloodSim
                 {
                     position.Y = -boundingBox.Height;
                     position.X = random.Next(0, Game1.gameWidth / 2);
-                    Game1.oxygenPoints += 10;
+                    Game1.oxygenPoints += 30;
                 }
                 
                 if (boundingBox.X > list[0].position.X)

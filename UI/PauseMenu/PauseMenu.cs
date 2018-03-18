@@ -58,6 +58,8 @@ namespace BloodSim.UI.PauseMenu
         {
             Game1.gameState = Game1.State.MainMenu;
             MainMenu.isMusicPlayed = false;
+
+            Game1.RestartProgress();
         }
     }
 }

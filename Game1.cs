@@ -67,6 +67,7 @@ namespace BloodSim
         static public bool isGamePaused;
         public static Rectangle cursorRectangle;
         public static string cursorTexture;
+        public static bool gameStarted = false;
         #endregion
         #region Guide
         public static bool isNeedGuide = true;
@@ -85,7 +86,7 @@ namespace BloodSim
 
         SoundEffect penetration;
         Song music;
-        bool musicPlayed = false;
+        public static bool musicPlayed = false;
 
         public static State gameState = State.MainMenu;
         public Game1()
@@ -122,10 +123,6 @@ namespace BloodSim
         protected override void Initialize()
         {
             base.Initialize();
-
-            SpawnEritro(1);
-            SpawnLeiko(1);
-            SpawnTrombo(1);
         }
 
         protected override void LoadContent()
@@ -195,6 +192,15 @@ namespace BloodSim
                             hud.Update(gameTime, oxygenPoints);
                             #endregion
                             #region Обновление игровых объектов
+                            if (!gameStarted)
+                            {
+                                SpawnEritro(1);
+                                SpawnLeiko(1);
+                                SpawnTrombo(1);
+
+                                gameStarted = true;
+                            }
+
                             for (int i = 0; i < eritroList.Count; i++)
                             {
                                 eritroList[i].Update(gameTime, new Rectangle(100, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height + eritroList[i].boundingBox.Height /*- eritroList[i].boundingBox.Height*/, 2, 2), wallList);
@@ -237,9 +243,13 @@ namespace BloodSim
                                 gameState = State.Victory;
                             }*/
 
-                            if ((oxygenPoints < 100) && (eritroList.Count == 0))
+                            if ((oxygenPoints < 20) && (eritroList.Count == 0))
                             {
                                 gameState = State.Defeat;
+                            }
+                            if (oxygenPoints == hud.oxygenBarCellRectangle.Width)
+                            {
+                                gameState = State.Victory;
                             }
                             #endregion
 
@@ -364,6 +374,8 @@ namespace BloodSim
                         hud.Draw(spriteBatch);
                         shopButton.Draw(spriteBatch);
                         pauseButton.Draw(spriteBatch);
+
+                        ClearAll();
                         break;
                     case State.Shop:
                         background.Draw(spriteBatch);
@@ -433,7 +445,7 @@ namespace BloodSim
                 Eritro eritroExample = new Eritro(random)
                 {
                     texture = eritroTexture,
-                    death_soundEffect = _death_soundEffect
+                    death_soundEffect = _death_soundEffect,
                 };
                 eritroList.Add(eritroExample);
                 cellList.Add(eritroExample);
@@ -498,20 +510,27 @@ namespace BloodSim
                 }
             }
 
+            for (int i = 0; i < tromboList.Count; i++)
+            {
+                if (tromboList[i].hp <= 0)
+                {
+                    tromboList.RemoveAt(i);
+                    i--; 
+                }
+            }
+
         }
 
         public static void RestartProgress() // Вернуть состояния всех объектов на исходные значения
         {
             for (int i = 0; i < bacteriumList.Count; i++)
             {
-                bacteriumList.RemoveAt(i);
-                i--;
+                bacteriumList[i].hp = 0;
             }
 
             for (int i = 0; i < eritroList.Count; i++) 
             {
-                eritroList.RemoveAt(i);
-                i--;
+                eritroList[0].hp = 0;
             }
 
             for (int i = 0; i < wallList.Count; i++)
@@ -521,9 +540,15 @@ namespace BloodSim
 
             for (int i = 0; i < leikoList.Count; i++)
             {
-                leikoList.RemoveAt(i);
-                i--;
+                leikoList[i].hp = 0;
             }
+            for (int i = 0; i < tromboList.Count; i++)
+            {
+                tromboList[i].hp = 0;
+            }
+
+            oxygenPoints = 0;
+            gameStarted = false;
         }
         #endregion
 

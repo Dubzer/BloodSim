@@ -96,9 +96,8 @@ namespace BloodSim.UI.EndMenu
 
             MediaPlayer.Stop();
             MainMenu.isMusicPlayed = false;
-
-            Game1.RestartProgress();
             Game1.ClearAll();
+            Game1.RestartProgress();
         }
 
         public void Quit()
