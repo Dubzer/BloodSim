@@ -37,7 +37,6 @@ namespace BloodSim
             fontColor = new Color(230, 230, 230, 180);
             oxygenBarColor = new Color(255, 255, 255, 180);
             oxygenBarCellColor = new Color(0, 0, 0, 200);
-            uiElementPosition = new Vector2(85, Game1.gameHeight - 65);
         }
 
         public void LoadContent(ContentManager Content)
@@ -48,6 +47,7 @@ namespace BloodSim
             fontBold = Content.Load<SpriteFont>("Fonts/bold14");
             fontBold23 = Content.Load<SpriteFont>("Fonts/bold23");
             uiElement = Content.Load<Texture2D>("Textures/UI/UIelement");
+            //uiElement = Content.Load<Texture2D>("Textures/trombo");
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -75,7 +75,9 @@ namespace BloodSim
                 oxygenBarCellRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - oxygenBarRectangle.Height - 25, 400, 25);
                 spawned = true;
             }
+            uiElementPosition = new Vector2(85, Game1.gameHeight - 65);
             uiElementRectangle = new Rectangle((int)uiElementPosition.X, (int)uiElementPosition.Y, 102, 32);
+            //uiElementRectangle = new Rectangle((int)uiElementPosition.X, (int)uiElementPosition.Y, 100, 100);
             // Oxygen
             oxygenBarRectangle = new Rectangle(Game1.gameWidth / 2 - 200, Game1.gameHeight - oxygenBarRectangle.Height - 25, hp, 25);
         }
