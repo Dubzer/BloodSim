@@ -51,15 +51,14 @@ namespace BloodSim
         //public Eritro er1 = new Eritro(random);
         //public Leiko le1 = new Leiko(random);
         //public Trombo tr1 = new Trombo(random);
+        public static int gameWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;     //  Тут задается ширина игры
+        public static int gameHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;     //  Тут задается высота игры
         #region ui
         Shop shop = new Shop();
         PauseMenu pauseMenu = new PauseMenu("Пауза");
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
         Button closeShopButton = new Button("closeIcon", new Vector2(gameWidth - 75, 25));
-        Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
-        public static int gameWidth = 1280;     //  Тут задается ширина игры
-        public static int gameHeight = 720;     //  Тут задается высота игры
-        public Cursor cursor = new Cursor(); // Курсор
+        Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));        public Cursor cursor = new Cursor(); // Курсор
         MainMenu mainMenu = new MainMenu("");
 
         EndMenu endMenu = new EndMenu();
@@ -96,7 +95,7 @@ namespace BloodSim
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = gameWidth;      
             graphics.PreferredBackBufferHeight = gameHeight;
-            //graphics.ToggleFullScreen();
+            graphics.ToggleFullScreen();
             #region UI
 
             cursorTexture = "cursorNormal";
