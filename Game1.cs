@@ -245,10 +245,12 @@ namespace BloodSim
 
                             if ((oxygenPoints < 20) && (eritroList.Count == 0))
                             {
+                                endMenu.isMusicPlayed = false;
                                 gameState = State.Defeat;
                             }
-                            if (oxygenPoints == hud.oxygenBarCellRectangle.Width)
+                            if (oxygenPoints >= hud.oxygenBarCellRectangle.Width)
                             {
+                                endMenu.isMusicPlayed = false;
                                 gameState = State.Victory;
                             }
                             #endregion

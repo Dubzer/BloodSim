@@ -28,7 +28,7 @@ namespace BloodSim
             texture = null;
             this.random = random;
             currentTarget = new Rectangle(random.Next(0, Game1.gameWidth / 4), random.Next(0, Game1.gameHeight - 50), 2, 2);
-            position = new Vector2(Game1.gameWidth / 4, Game1.gameHeight / 2);
+            position = new Vector2(Game1.gameWidth / 4, -100);
             boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 15);
 
             OnDeath += Die;
