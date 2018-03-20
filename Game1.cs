@@ -48,9 +48,9 @@ namespace BloodSim
 
         static public int oxygenPoints;
 
-        public Eritro er1 = new Eritro(random);
-        public Leiko le1 = new Leiko(random);
-        public Trombo tr1 = new Trombo(random);
+        //public Eritro er1 = new Eritro(random);
+        //public Leiko le1 = new Leiko(random);
+        //public Trombo tr1 = new Trombo(random);
         #region ui
         Shop shop = new Shop();
         PauseMenu pauseMenu = new PauseMenu("Пауза");
