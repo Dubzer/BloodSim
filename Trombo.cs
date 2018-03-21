@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 
@@ -28,7 +24,7 @@ namespace BloodSim
             this.random = random;
 
             position = new Vector2(random.Next(0, Game1.gameWidth / 4), -100);
-            currentTarget = new Rectangle(random.Next(0, Game1.gameWidth / 4), random.Next(0, Game1.gameHeight - 50), 2, 2);
+            currentTarget = new Rectangle(random.Next(0, Game1.gameWidth / 4), random.Next(100, Game1.gameHeight - 50), 2, 2);
             homeTarget = currentTarget;
             boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 15);
 

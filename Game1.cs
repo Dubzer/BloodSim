@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using BloodSim.UI.PauseMenu;
@@ -51,14 +47,14 @@ namespace BloodSim
         //public Eritro er1 = new Eritro(random);
         //public Leiko le1 = new Leiko(random);
         //public Trombo tr1 = new Trombo(random);
-        public static int gameWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;     //  Тут задается ширина игры
-        public static int gameHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;     //  Тут задается высота игры
         #region ui
         Shop shop = new Shop();
         PauseMenu pauseMenu = new PauseMenu("Пауза");
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
         Button closeShopButton = new Button("closeIcon", new Vector2(gameWidth - 75, 25));
         Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
+        public static int gameWidth = 1366;    //  Тут задается ширина игры
+        public static int gameHeight = 768;     //  Тут задается высота игры
         public Cursor cursor = new Cursor(); // Курсор
         MainMenu mainMenu = new MainMenu("");
 
@@ -96,7 +92,7 @@ namespace BloodSim
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = gameWidth;      
             graphics.PreferredBackBufferHeight = gameHeight;
-            graphics.ToggleFullScreen();
+            //graphics.ToggleFullScreen();
             #region UI
 
             cursorTexture = "cursorNormal";
@@ -183,7 +179,7 @@ namespace BloodSim
                         case State.PauseMenu:
                             pauseMenu.Update(gameTime);
                             MediaPlayer.Pause();
-                            musicPlayed = false;
+                            musicPlayed = true;
                             break;
                         case State.Playing:
                             #region HUD
@@ -230,8 +226,13 @@ namespace BloodSim
                             {
                                 MediaPlayer.Play(music);
                                 MediaPlayer.Volume = .05f;
+                                MediaPlayer.IsRepeating = true;
 
                                 musicPlayed = true;
+                            }
+                            else
+                            {
+                                MediaPlayer.Resume();
                             }
 
                             Shop.money = oxygenPoints;
