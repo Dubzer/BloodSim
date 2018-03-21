@@ -74,7 +74,7 @@ namespace BloodSim
                     }
                 }*/
 
-                if ((position.Y >= Game1.gameHeight + 90) && (oxygenMining))
+                if ((position.Y >= Game1.gameHeight) && (oxygenMining))
                 {
                     position.Y = -boundingBox.Height;
                     position.X = random.Next(0, Game1.gameWidth / 2);
