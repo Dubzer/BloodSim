@@ -269,7 +269,7 @@ namespace BloodSim
 
                                 if (Bacterium.needNotification)
                                 {
-                                    InGameNotification.Show("Внимание! Появилась бактерия!", true, gameWidth / 2 - 400, gameHeight / 2 - 65);
+                                    InGameNotification.Show("Внимание! Прорыв сосуда!", true, gameWidth / 2 - 400, gameHeight / 2 - 65);
                                     
                                     Bacterium.needNotification = !Bacterium.needNotification;
                                 }
