@@ -53,8 +53,8 @@ namespace BloodSim
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
         Button closeShopButton = new Button("closeIcon", new Vector2(gameWidth - 75, 25));
         Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
-        public static int gameWidth = 1366;    //  Тут задается ширина игры
-        public static int gameHeight = 768;     //  Тут задается высота игры
+        public static int gameWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+        public static int gameHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;    //  Тут задается ширина игры
         public Cursor cursor = new Cursor(); // Курсор
         MainMenu mainMenu = new MainMenu("");
 
@@ -92,7 +92,8 @@ namespace BloodSim
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = gameWidth;      
             graphics.PreferredBackBufferHeight = gameHeight;
-            //graphics.ToggleFullScreen();
+            
+graphics.ToggleFullScreen();
             #region UI
 
             cursorTexture = "cursorNormal";

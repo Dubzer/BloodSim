@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Fonts/regular.spritefont</SourceFile>
-  <SourceTime>2018-03-21T09:46:12.4051902+03:00</SourceTime>
-  <DestFile>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/bin/Windows/Fonts/regular.xnb</DestFile>
-  <DestTime>2018-03-21T10:59:31.8893089+03:00</DestTime>
+  <SourceFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Fonts/regular.spritefont</SourceFile>
+  <SourceTime>2018-03-21T12:44:34.3247533+03:00</SourceTime>
+  <DestFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bin/Windows/Fonts/regular.xnb</DestFile>
+  <DestTime>2018-03-21T12:46:09.3946658+03:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2017-03-01T18:05:36+03:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

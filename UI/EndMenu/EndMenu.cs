@@ -31,10 +31,6 @@ namespace BloodSim.UI.EndMenu
 
         public bool isMusicPlayed = false;
 
-        public EndMenu()
-        {
-            textPosition = new Vector2(Game1.gameWidth / 6, Game1.gameHeight / 7);
-        }
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -42,7 +38,7 @@ namespace BloodSim.UI.EndMenu
             mmButton.Draw(spriteBatch);
             quitButton.Draw(spriteBatch);
 
-            spriteBatch.DrawString(fontBold42, endText, textPosition, Color.White);
+            spriteBatch.DrawString(fontBold42, endText, new Vector2(Game1.gameWidth / 2 - fontBold42.MeasureString(endText).Length() / 2, Game1.gameHeight / 4), Color.White);
         }
 
         public void Update(GameTime gameTime, string endText, int musicType)

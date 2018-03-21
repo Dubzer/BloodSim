@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/Sounds/music1.mp3</SourceFile>
-  <SourceTime>2018-03-21T09:46:12.5996662+03:00</SourceTime>
-  <DestFile>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/bin/Windows/Sounds/music1.xnb</DestFile>
-  <DestTime>2018-03-21T10:59:29.7742487+03:00</DestTime>
+  <SourceFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Sounds/music1.mp3</SourceFile>
+  <SourceTime>2018-03-21T12:44:34.4915385+03:00</SourceTime>
+  <DestFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bin/Windows/Sounds/music1.xnb</DestFile>
+  <DestTime>2018-03-21T12:46:07.9727666+03:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2017-03-01T18:05:36+03:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>D:/Programms/Ares_Projects/BloodSim_GitHub/BloodSim/Content/bin/Windows/Sounds/music1.wma</string>
+    <string>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bin/Windows/Sounds/music1.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>
