@@ -25,7 +25,7 @@ namespace BloodSim
         {
             texture = null;
             this.random = random;
-            currentTarget = new Rectangle(100, Game1.gameHeight + 100, 2, 2);
+            currentTarget = new Rectangle(100, Game1.gameHeight + 10000, 2, 2);
             position = new Vector2(random.Next(0, Game1.gameWidth / 4), -100);
             boundingBox = new Rectangle((int)position.X, (int)position.Y, Game1.gameWidth / 15, Game1.gameWidth / 20);
 
