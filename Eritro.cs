@@ -81,7 +81,7 @@ namespace BloodSim
                     Game1.oxygenPoints += 30;
                 }
                 
-                if (boundingBox.X > list[0].position.X)
+                if (boundingBox.X > list[0].position.X + 30)
                 {
                     hp = 0;
                 }
