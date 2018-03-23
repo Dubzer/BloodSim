@@ -1,8 +1,1 @@
-.vs/BloodSim/v15/Server/sqlite3/storage.ide
-*.pdb
-Content/obj/Windows/.mgcontent
-obj/x86/Debug/BloodSim.exe
-obj/x86/Debug/BloodSim.csprojResolveAssemblyReference.cache
-obj/x86/Debug/BloodSim.csproj.FileListAbsolute.txt
-.vs/BloodSim/v15/.suo
-*.ide-wal
+bin/
