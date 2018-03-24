@@ -23,7 +23,7 @@ namespace BloodSim
         private Rectangle itemRectangle;        // Ректенгл предмета
         private Color cardColor, costColor, textColor;        // Цвет карточки
         private SpriteFont fontBold, fontRegular;       // Шрифты
-        private SoundEffect clickSound,  errorSound;     // Звук клика
+        private SoundEffect clickSound;     // Звук клика
         private int cost;       // Стоимость предмета 
         public Action NotEnoughMoney;
         private bool customRec = false;
@@ -133,11 +133,10 @@ namespace BloodSim
         public void LoadContent(ContentManager Content)
         {
             itemTexture = Content.Load<Texture2D>(item);        //  Загрузка контента для предмета
-            cardTexture = Content.Load<Texture2D>("card");      //  Загрузка конента для карточки
+            cardTexture = Content.Load<Texture2D>("Textures/UI/card");      //  Загрузка конента для карточки
             fontRegular = Content.Load<SpriteFont>("Fonts/regular");      //  Загрузка конента для шрифта
             fontBold = Content.Load<SpriteFont>("Fonts/bold");        //  Загрузка конента для шрита
-            clickSound = Content.Load<SoundEffect>("clickSound");       //  Загрузка конента для звука клика
-            errorSound = Content.Load<SoundEffect>("Sounds/error");     //  Звук ошибки
+            clickSound = Content.Load<SoundEffect>("Sounds/UI/clickSound");       //  Загрузка конента для звука клика
 
             cardRectangle = new Rectangle(2, (int)position.Y, 355, 200);
 

@@ -108,7 +108,7 @@ namespace BloodSim
         public void LoadContent(ContentManager Content)
         {
             backgound = Content.Load<Texture2D>("Textures/UI/background");
-            topTexture = Content.Load<Texture2D>("top");
+            topTexture = Content.Load<Texture2D>("Textures/UI/top");
             card0.LoadContent(Content);
             card1.LoadContent(Content);
             card2.LoadContent(Content);

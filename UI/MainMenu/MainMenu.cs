@@ -14,7 +14,6 @@ namespace BloodSim.UI.PauseMenu
     class MainMenu
     {
         #region Поля
-        Texture2D TestImage;
         private SpriteFont fontBold42;
         PauseMenuButton button1 = new PauseMenuButton(Game1.gameHeight / 2 - 50, "Начать игру");
         PauseMenuButton button2 = new PauseMenuButton(Game1.gameHeight / 2, "Выход");
@@ -55,10 +54,9 @@ namespace BloodSim.UI.PauseMenu
         }
         public void LoadContent(ContentManager Content)
         {
-            TestImage = Content.Load<Texture2D>("TestImage");
             button1.LoadContent(Content);
             button2.LoadContent(Content);
-            backgroundTexture = Content.Load<Texture2D>("Textures/mainMenuBackground");
+            backgroundTexture = Content.Load<Texture2D>("Textures/UI/mainMenuBackground");
             fontBold42 = Content.Load<SpriteFont>("Fonts/bold42");
             particlesTexture = Content.Load<Texture2D>("Textures/particles");
             theme = Content.Load<Song>("Sounds/mainMenuMusic");

@@ -60,9 +60,9 @@ namespace BloodSim
         }
         public void LoadContent(ContentManager Content)
         {
-            texture = Content.Load<Texture2D>("buttonBlank");
+            texture = Content.Load<Texture2D>("Textures/UI/floatingButton");
             iconTexture = Content.Load<Texture2D>(icon);
-            clickSound = Content.Load<SoundEffect>("clickSound");       //  Загрузка конента для звука клика
+            clickSound = Content.Load<SoundEffect>("Sounds/UI/clickSound");       //  Загрузка конента для звука клика
 
         }
     }

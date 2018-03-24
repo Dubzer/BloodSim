@@ -16,7 +16,7 @@ namespace BloodSim
         public override void LoadContent(ContentManager Content)
         {
             texture = Content.Load<Texture2D>("Textures/background");
-            mainMenuTexture = Content.Load<Texture2D>("Textures/mainMenuBackground");
+            mainMenuTexture = Content.Load<Texture2D>("Textures/UI/background");
             particlesTexture = Content.Load<Texture2D>("Textures/particles");
         }
 

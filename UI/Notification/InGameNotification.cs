@@ -88,7 +88,7 @@ namespace BloodSim.UI.Notification
             texture = Content.Load<Texture2D>("Textures/UI/notification");     //  Загрузка контента для текстурки уведомления
             fontBold = Content.Load<SpriteFont>("Fonts/bold23");        //  Загрузка конента для шрифта
             fontRegular = Content.Load<SpriteFont>("Fonts/regular");      //  Загрузка контента для еще одно шрифта
-            clickSound = Content.Load<SoundEffect>("clickSound");       //  Загрузка конента для звука клика
+            clickSound = Content.Load<SoundEffect>("Sounds/UI/clickSound");       //  Загрузка конента для звука клика
             backgroundTexture = Content.Load<Texture2D>("Textures/UI/background");        //  Загрузка контента для заднего фона(затемнения)
             //iconTexture = Content.Load<Texture2D>(icon);
         }

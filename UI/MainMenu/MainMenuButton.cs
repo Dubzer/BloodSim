@@ -82,8 +82,8 @@ namespace BloodSim.UI.PauseMenu
             x = 0;
             rectangle = new Rectangle((int)x, (int)y, 190, 40);        // Ректенгл карты
 
-            clickSound = Content.Load<SoundEffect>("clickSound");       //  Загрузка конента для звука клика
-            texture = Content.Load<Texture2D>("button");
+            clickSound = Content.Load<SoundEffect>("Sounds/UI/clickSound");       //  Загрузка конента для звука клика
+            texture = Content.Load<Texture2D>("Textures/UI/button");
         }
     }
 }

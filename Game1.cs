@@ -57,9 +57,9 @@ namespace BloodSim
         #region ui
         Shop shop = new Shop();
         PauseMenu pauseMenu = new PauseMenu("Пауза");
-        Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
-        Button closeShopButton = new Button("closeIcon", new Vector2(gameWidth - 75, 25));
-        Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
+        Button shopButton = new Button("Textures/UI/Icons/shopIcon", new Vector2(25, gameHeight - 75));
+        Button closeShopButton = new Button("Textures/UI/Icons/closeIcon", new Vector2(gameWidth - 75, 25));
+        Button pauseButton = new Button("Textures/UI/Icons/pauseIcon", new Vector2(25, 25));
 
         public Cursor cursor = new Cursor(); // Курсор
         MainMenu mainMenu = new MainMenu("");
@@ -129,7 +129,7 @@ namespace BloodSim
             spriteBatch = new SpriteBatch(GraphicsDevice);
             #endregion
             pauseMenu.LoadContent(Content);
-            cursor.Texture = Content.Load<Texture2D>("cursorNormal");       // Загрузка контента для курсора
+            cursor.Texture = Content.Load<Texture2D>("Textures/UI/Cursors/cursorNormal");       // Загрузка контента для курсора
             pauseButton.LoadContent(Content);
             shopButton.LoadContent(Content);
             closeShopButton.LoadContent(Content);
