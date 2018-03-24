@@ -25,8 +25,18 @@ namespace BloodSim
             Defeat
         }
 
+        #region DoNotEdit
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        #endregion
+
+        #region Game Config 
+
+        public static int gameWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;   //  Тут задается высота игры
+        public static int gameHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;    //  Тут задается ширина игры
+        public static State gameState = State.MainMenu;     //  Тут задается начальная стадия игры
+
+        #endregion
 
         static public Random random = new Random(unchecked((int)(DateTime.Now.Ticks)));
         static public List<Cell> cellList = new List<Cell>();
@@ -44,17 +54,13 @@ namespace BloodSim
 
         static public int oxygenPoints;
 
-        //public Eritro er1 = new Eritro(random);
-        //public Leiko le1 = new Leiko(random);
-        //public Trombo tr1 = new Trombo(random);
         #region ui
         Shop shop = new Shop();
         PauseMenu pauseMenu = new PauseMenu("Пауза");
         Button shopButton = new Button("shopIcon", new Vector2(25, gameHeight - 75));
         Button closeShopButton = new Button("closeIcon", new Vector2(gameWidth - 75, 25));
         Button pauseButton = new Button("pauseIcon", new Vector2(25, 25));
-        public static int gameWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-        public static int gameHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;    //  Тут задается ширина игры
+
         public Cursor cursor = new Cursor(); // Курсор
         MainMenu mainMenu = new MainMenu("");
 
@@ -62,12 +68,7 @@ namespace BloodSim
 
         static public bool isGamePaused;
         public static Rectangle cursorRectangle;
-        public static string cursorTexture;
         public static bool gameStarted = false;
-        #endregion
-        #region Guide
-        public static bool isNeedGuide = true;
-        private static int currentMessage;
         #endregion
         #region Стандартный контент
         Texture2D eritroTexture;
@@ -84,26 +85,26 @@ namespace BloodSim
         Song music;
         public static bool musicPlayed = false;
 
-        public static State gameState = State.MainMenu;
         public Game1()
         {
 
+            #region DoNotEdit
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = gameWidth;      
-            graphics.PreferredBackBufferHeight = gameHeight;
-            
-graphics.ToggleFullScreen();
-            #region UI
+            graphics.PreferredBackBufferWidth = gameWidth;      //  Разрешению приложения присваивается параметр разрешения из gameWidth
+            graphics.PreferredBackBufferHeight = gameHeight;      //  Разрешению приложения присваивается параметр разрешения из gameHeight
+            graphics.ToggleFullScreen();
 
-            cursorTexture = "cursorNormal";
+            #endregion
+
+            #region Event Handlers
             shopButton.clicked += OpenShopMenu;
             closeShopButton.clicked += CloseShopMenu;
             pauseButton.clicked += OpenPauseMenu;
             shop.OnClick0 += BuyEritro;
             shop.OnClick1 += BuyLeiko;
             shop.OnClick2 += BuyTrombo;
-
             #endregion
 
             for (int i = 0; i < gameHeight / 200; i++)
@@ -124,16 +125,16 @@ graphics.ToggleFullScreen();
 
         protected override void LoadContent()
         {
+            #region DoNotEdit
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            #region
+            #endregion
             pauseMenu.LoadContent(Content);
-            cursor.Texture = Content.Load<Texture2D>(cursorTexture); // Загрузка контента для курсора
+            cursor.Texture = Content.Load<Texture2D>("cursorNormal");       // Загрузка контента для курсора
             pauseButton.LoadContent(Content);
             shopButton.LoadContent(Content);
             closeShopButton.LoadContent(Content);
             shop.LoadContent(Content);
             mainMenu.LoadContent(Content);
-            #endregion
             for (int i = 0; i < wallList.Count; i++)
             {
                 wallList[i].LoadContent(Content);

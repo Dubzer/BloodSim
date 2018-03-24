@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/Textures/hpBar.png</SourceFile>
-  <SourceTime>2018-03-23T16:00:44.8949737+03:00</SourceTime>
+  <SourceTime>2018-03-23T20:40:05.0013038+03:00</SourceTime>
   <DestFile>C:/Users/Admin/Documents/GitHub/BloodSim/Content/bin/Windows/Textures/hpBar.xnb</DestFile>
-  <DestTime>2018-03-23T16:24:27.0771412+03:00</DestTime>
+  <DestTime>2018-03-24T23:12:41.2592554+03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T18:05:36+03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
